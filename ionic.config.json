@@ -1,0 +1,7 @@
+{
+  "name": "ManualPiensa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
