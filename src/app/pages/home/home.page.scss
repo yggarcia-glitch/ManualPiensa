@@ -1,0 +1,79 @@
+ion-content {
+  --background: #eef2f3;
+}
+
+.home-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.home-box {
+  width: 100%;
+  max-width: 900px;
+  padding: 48px;
+  background: #f4f6f8;
+  border-radius: 22px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.home-box h1 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #2e3440;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 40px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.option-card {
+  padding: 28px;
+  border-radius: 18px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: left;
+}
+
+.option-card h2 {
+  font-size: 1.2rem;
+  color: #2e3440;
+  margin-bottom: 8px;
+}
+
+.option-card p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.option-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(46, 205, 196, 0.25);
+}
+
+.credits-section {
+  margin-top: 36px;
+}
+
+.credits-section ion-button {
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-transform: none;
+}
+
+.credits-section ion-button:hover {
+  color: #2ecdc4;
+}
