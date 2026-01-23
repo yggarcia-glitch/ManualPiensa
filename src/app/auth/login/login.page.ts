@@ -1,22 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import {
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
   IonItem,
   IonLabel,
   IonInput,
-  IonButton
+  IonButton,
+  IonIcon   // 👈 IMPORTANTE
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -28,27 +21,29 @@ import {
     CommonModule,
     FormsModule,
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonCardContent,
     IonItem,
     IonLabel,
     IonInput,
-    IonButton
-  ]
+    IonButton,
+    IonIcon    // 👈 AGREGAR AQUÍ
+  ],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
+
+  email = '';
+  password = '';
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
-
-  login(): void {
+  login() {
     this.router.navigateByUrl('/home');
+  }
+
+  goToRegister() {
+    this.router.navigateByUrl('/register');
+  }
+
+  forgotPassword() {
+    alert('Recuperar contraseña');
   }
 }

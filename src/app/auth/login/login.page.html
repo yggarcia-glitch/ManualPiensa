@@ -1,29 +1,63 @@
-<ion-content>
-  <div class="login-wrapper">
-    <div class="login-box">
-      <h1>Manual de Armado</h1>
-      <p class="subtitle">
-        Plataforma educativa con modelos impresos en 3D
+<ion-content class="login-page">
+
+  <div class="split-container">
+
+    <!-- IZQUIERDA: Ilustración / Gráfico -->
+    <div class="illustration-panel">
+      <img src="assets/login-illustration.png" alt="Login Illustration" />
+    </div>
+
+    <!-- DERECHA: Formulario -->
+    <div class="form-panel">
+
+      <h1>Bienvenido</h1>
+
+      <p class="intro">
+        Accede a tu cuenta para continuar
       </p>
 
-        <ion-item fill="outline">
-          <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
+      <!-- SOCIAL LOGIN -->
+      <div class="social-login">
+        <ion-button fill="clear" class="social fb">
+          <ion-icon name="logo-facebook"></ion-icon>
+          Facebook
+        </ion-button>
+        <ion-button fill="clear" class="social google">
+          <ion-icon name="logo-google"></ion-icon>
+          Google
+        </ion-button>
+      </div>
 
-        <ion-item fill="outline">
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
+      <p class="or-text">o con tu email</p>
 
+      <!-- EMAIL / PASSWORD -->
+      <ion-item fill="outline">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
 
       <ion-button expand="block" (click)="login()">
-        Ingresar
+        Iniciar Sesión
       </ion-button>
 
-      <p class="footer-text">
-        Proyecto académico – Primer ciclo
-      </p>
+      <ion-button fill="clear" size="small" (click)="goToRegister()">
+        Crear Cuenta
+      </ion-button>
+
+      <ion-button fill="clear" size="small" (click)="forgotPassword()">
+        ¿Olvidaste tu contraseña?
+      </ion-button>
+
     </div>
+
   </div>
+
 </ion-content>
+
+
+
