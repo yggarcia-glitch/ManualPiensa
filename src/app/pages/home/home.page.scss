@@ -33,6 +33,30 @@ ion-content::before {
   padding: 20px;
 }
 
+/* Background controllable por CSS variables */
+.home-wrapper {
+  --bg-image: none;
+  --overlay-opacity: 0.4;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.home-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,var(--overlay-opacity));
+  pointer-events: none;
+  z-index: -1;
+}
+
+.home-box {
+  position: relative;
+  z-index: 1;
+}
+
 .home-box {
   width: 100%;
   max-width: 920px;
