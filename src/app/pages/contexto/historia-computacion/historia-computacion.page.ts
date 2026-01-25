@@ -78,3 +78,5 @@ export class HistoriaComputacionPage implements OnInit {
   ngOnInit() { }
 
 }
+
+//hola
