@@ -1,0 +1,143 @@
+:host {
+  ion-content.historia-computacion-page {
+    --background: #fefefe; /* fondo claro */
+  }
+}
+
+.historia-computacion-page {
+  font-family: 'Roboto', sans-serif;
+  padding: 2rem 0;
+
+  /* Contenedor horizontal */
+  .timeline-container {
+    overflow-x: auto;
+    padding: 1rem 0;
+  }
+
+  .timeline {
+    display: flex;
+    gap: 4rem;
+    position: relative;
+    min-width: 1200px; /* scroll horizontal */
+  }
+
+  .timeline-event {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &.up {
+      .timeline-card {
+        margin-bottom: 1rem;
+      }
+      .timeline-date {
+        margin-top: 0.3rem;
+      }
+    }
+
+    &.down {
+      .timeline-card {
+        order: 2;
+        margin-top: 1rem;
+      }
+      .timeline-date {
+        order: 1;
+        margin-bottom: 0.3rem;
+      }
+    }
+
+    .timeline-card {
+      background: #f2f2f2;
+      border: 1px solid rgba(72, 201, 176, 0.4);
+      box-shadow: 0 0 20px rgba(72, 201, 176, 0.3);
+      border-radius: 12px;
+      padding: 1rem;
+      width: 200px;
+      text-align: justify;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+
+      img {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+      }
+
+      h3 {
+        margin: 0.5rem 0;
+        font-size: 1.1rem;
+        color: #333;
+      }
+
+      p {
+        font-size: 0.95rem;
+        max-height: 3rem;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        color: #333;
+
+        &.expanded {
+          max-height: 500px;
+        }
+      }
+
+      .expand-btn {
+        position: absolute;
+        bottom: 5px;
+        right: 10px;
+        font-weight: bold;
+        color: #48c9b0;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 25px rgba(72, 201, 176, 0.5);
+      }
+    }
+
+    .timeline-date {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #48c9b0;
+      text-align: center;
+    }
+
+    .timeline-point-container {
+      position: relative;
+      width: 4px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .timeline-line {
+        position: absolute;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background-color: #48c9b0;
+      }
+
+      .timeline-point {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #48c9b0;
+        border: 2px solid #ffffff;
+        z-index: 2;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .timeline {
+      min-width: auto;
+      gap: 2rem;
+    }
+    .timeline-card {
+      width: 150px;
+    }
+  }
+}

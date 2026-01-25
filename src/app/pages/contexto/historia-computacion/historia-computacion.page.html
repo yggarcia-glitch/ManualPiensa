@@ -1,13 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>historia-computacion</ion-title>
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>Historia de la Computación</ion-title>
+    <!-- Navbar simple con botones de ejemplo -->
+    <ion-buttons slot="end">
+      <ion-button>Inicio</ion-button>
+      <ion-button>Aprendizaje</ion-button>
+      <ion-button>Prototipos</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">historia-computacion</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="historia-computacion-page" fullscreen>
+
+  <div class="timeline-container">
+    <div class="timeline">
+      <ng-container *ngFor="let evento of eventos; let i = index">
+        <div class="timeline-event" [ngClass]="{'up': i % 2 === 0, 'down': i % 2 !== 0}">
+          
+          <!-- Tarjeta expandible -->
+          <div class="timeline-card" (click)="evento.expanded = !evento.expanded">
+            <img [src]="evento.img" [alt]="evento.titulo" />
+            <h3>{{ evento.titulo }}</h3>
+            <p [class.expanded]="evento.expanded">{{ evento.descripcion }}</p>
+            <span class="expand-btn">{{ evento.expanded ? '▲' : '▼' }}</span>
+          </div>
+
+          <!-- Fecha -->
+          <div class="timeline-date">{{ evento.anio }}</div>
+
+          <!-- Línea y punto -->
+          <div class="timeline-point-container">
+            <div class="timeline-line"></div>
+            <div class="timeline-point"></div>
+          </div>
+
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
 </ion-content>
