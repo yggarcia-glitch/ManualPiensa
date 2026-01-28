@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-historia-computacion',
@@ -9,7 +9,12 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./historia-computacion.page.scss'],
   standalone: true,
   imports: [
-    IonicModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonButton,
+    IonContent,
     CommonModule,
     RouterModule // 👈 NECESARIO para routerLink en la navbar
   ],

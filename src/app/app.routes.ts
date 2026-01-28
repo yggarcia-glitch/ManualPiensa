@@ -19,6 +19,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/contexto/historia-computacion/historia-computacion.page').then( m => m.HistoriaComputacionPage)
   },
   {
+    path: 'historia-creditos',
+    loadComponent: () => import('./pages/contexto/historia-computacion/creditos.page').then( m => m.CreditosHistoriaPage)
+  },
+  {
     path: 'impresion3d',
     loadComponent: () => import('./pages/contexto/impresion3d/impresion3d.page').then( m => m.Impresion3dPage)
   },
