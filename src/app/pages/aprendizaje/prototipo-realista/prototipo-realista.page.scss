@@ -1,0 +1,210 @@
+/* --- TEMA DARK PRO --- */
+.pro-content {
+  --background: #0b1120; /* Azul muy oscuro casi negro */
+  --color: #e2e8f0;
+}
+
+ion-toolbar {
+  --background: #0f172a;
+  --color: #fff;
+  border-bottom: 1px solid #1e293b;
+}
+
+.pro-title {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 18px;
+}
+
+.version {
+  font-size: 10px;
+  background: #334155;
+  padding: 2px 6px;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+/* Barra de progreso custom */
+.pro-progress-container {
+  height: 4px;
+  background: #1e293b;
+  width: 100%;
+}
+.pro-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #d946ef); /* Gradiente Violeta-Rosa */
+  transition: width 0.3s ease;
+}
+
+/* --- LAYOUT --- */
+.split-layout {
+  display: flex;
+  height: 100%;
+}
+
+/* IZQUIERDA (3D) */
+.left-panel {
+  flex: 6;
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+  position: relative;
+  border-right: 1px solid #334155;
+}
+
+.three-canvas { width: 100%; height: 100%; }
+
+.hud-overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hud-item {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid #334155;
+  color: #94a3b8;
+  font-family: monospace;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+}
+
+/* DERECHA (TEXTO) */
+.right-panel {
+  flex: 4;
+  background: #0b1120;
+  color: #f8fafc;
+  overflow-y: auto;
+}
+
+.manual-card-content {
+  padding: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.step-info { flex: 1; }
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.phase-badge {
+  --background: #334155;
+  --color: #cbd5e1;
+  padding: 6px 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.tech-id {
+  font-family: monospace;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.step-title {
+  font-size: 26px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+}
+
+.step-desc {
+  color: #cbd5e1;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* Grid de Especificaciones */
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-item .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.spec-item .value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.text-warning { color: #fbbf24; }
+
+/* Pro Tip Box */
+.pro-tip {
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.1), transparent);
+  border-left: 3px solid #8b5cf6;
+  padding: 15px;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.tip-icon {
+  color: #a78bfa;
+  font-size: 18px;
+  margin-top: 2px;
+}
+
+.tip-content {
+  font-size: 13px;
+  color: #e2e8f0;
+  line-height: 1.5;
+}
+
+/* Botones */
+.navigation-buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 15px;
+}
+
+.action-btn {
+  --background: #7c3aed; /* Violeta fuerte */
+  --background-hover: #6d28d9;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .split-layout { flex-direction: column; }
+  .left-panel { height: 40vh; flex: none; }
+  .right-panel { height: auto; flex: auto; }
+}
