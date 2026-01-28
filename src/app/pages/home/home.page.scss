@@ -8,7 +8,6 @@ ion-content {
   position: relative;
 }
 
-/* Fondo sutil con patrón */
 ion-content::before {
   content: '';
   position: absolute;
@@ -33,7 +32,6 @@ ion-content::before {
   padding: 20px;
 }
 
-/* Background controllable por CSS variables */
 .home-wrapper {
   --bg-image: none;
   --overlay-opacity: 0.4;
@@ -74,7 +72,6 @@ ion-content::before {
   overflow: hidden;
 }
 
-/* Borde decorativo en la parte superior */
 .home-box::before {
   content: '';
   position: absolute;
@@ -115,6 +112,21 @@ ion-content::before {
   height: 3px;
   background: linear-gradient(90deg, transparent, #22b3ab, transparent);
   border-radius: 2px;
+}
+
+ion-header ion-toolbar {
+  background: #ffffff !important;
+  --background: #ffffff;
+  color: #000000 !important;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+ion-header ion-title {
+  color: #000000;
+  font-weight: 700;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive;
+  font-size: 1.55rem;
 }
 
 .subtitle {
@@ -196,7 +208,6 @@ ion-content::before {
   transition-duration: 0.1s;
 }
 
-/* SECCIÓN DE CRÉDITOS MEJORADA */
 .credits-section {
   margin-top: 56px;
   padding-top: 40px;
@@ -276,13 +287,13 @@ ion-content::before {
   --border-color: rgba(34, 179, 171, 0.3);
 }
 
-/* Decoración adicional en hover */
+
 .credits-actions ion-button:hover {
   transform: translateY(-2px);
   transition: transform 0.2s ease;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .home-wrapper {
     padding: 16px;

@@ -4,11 +4,11 @@
 	--primary: #0aa79a;
 
 	display: block;
-	background: transparent; /* ⬅️ CAMBIO CLAVE */
+	background: transparent;
 	color: #111;
 }
 
-/* El fondo blanco REAL va aquí */
+
 ion-content {
 	--background: #ffffff;
 }
@@ -18,7 +18,7 @@ ion-content {
 	background: transparent;
 }
 
-/* ================= Icons ================= */
+
 .top-icons img {
 	width: 32px;
 	height: 32px;
@@ -30,7 +30,7 @@ ion-content {
 	--padding-end: 4px;
 }
 
-/* ================= Card ================= */
+
 .card {
 	background: #ffffff;
 	border-radius: 12px;
@@ -63,15 +63,13 @@ ion-content {
 	color: var(--primary);
 	text-decoration: underline;
 }
-
-/* ================= Note ================= */
 .note {
 	margin-top: 10px;
 	color: #6b6b6b;
 	font-size: 0.92rem;
 }
 
-/* ================= Header ================= */
+
 ion-header ion-toolbar {
 	--background: #ffffff;
 	color: #000;
@@ -82,8 +80,6 @@ ion-header ion-title {
 	color: #000000;
 	font-weight: 700;
 }
-
-/* ================= Decorative background ================= */
 :host::before,
 :host::after {
 	content: '';
@@ -115,3 +111,4 @@ ion-header ion-title {
 		transparent 40%
 	);
 }
+	
