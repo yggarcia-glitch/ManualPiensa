@@ -1,49 +1,54 @@
 <ion-content class="login-page">
 
-  <div class="split-container">
-
-    <!-- IZQUIERDA: Ilustración / Gráfico -->
-    <div class="illustration-panel">
-      <img src="assets/reparacion.jpg" alt="Login Illustration" />
+  <div class="login-container">
+    
+    <!-- IMAGEN DE FONDO -->
+    <div class="background-image">
+      <img src="assets/reparacion.jpg" alt="Workspace Illustration" class="illustration" />
     </div>
 
-    <!-- DERECHA: Formulario -->
-    <div class="form-panel">
+    <!-- TARJETA LOGIN FLOTANTE -->
+    <div class="login-card-wrapper">
+      <div class="login-card">
+        
+        <h1 class="title">Bienvenido</h1>
 
-      <h1>Bienvenido</h1>
+        <!-- EMAIL INPUT -->
+        <div class="input-group">
+          <ion-icon name="person" class="input-icon"></ion-icon>
+          <ion-input 
+            type="email" 
+            placeholder="Correo Electrónico"
+            [(ngModel)]="email"
+            class="custom-input">
+          </ion-input>
+        </div>
 
-      <p class="intro">
-        Ingresa tu informacion personal para continuar
-      </p>
+        <!-- PASSWORD INPUT -->
+        <div class="input-group">
+          <ion-icon name="lock-closed" class="input-icon"></ion-icon>
+          <ion-input 
+            type="password" 
+            placeholder="Contraseña"
+            [(ngModel)]="password"
+            class="custom-input">
+          </ion-input>
+        </div>
 
-      <!-- SOCIAL LOGIN -->
-      <div class="social-login">
+        <!-- FORGOT PASSWORD LINK -->
+        <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+
+        <!-- LOGIN BUTTON -->
+        <ion-button expand="block" class="btn-login" (click)="login()">
+          Ingresar
+        </ion-button>
+
+        <!-- REGISTER BUTTON -->
+        <ion-button expand="block" class="btn-register" (click)="goToRegister()">
+          Crear cuenta
+        </ion-button>
+
       </div>
-
-
-      <!-- EMAIL / PASSWORD -->
-      <ion-item fill="outline">
-        <ion-label position="floating">Email</ion-label>
-        <ion-input type="email" [(ngModel)]="email"></ion-input>
-      </ion-item>
-
-      <ion-item fill="outline">
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" [(ngModel)]="password"></ion-input>
-      </ion-item>
-
-      <ion-button expand="block" (click)="login()">
-        Iniciar Sesión
-      </ion-button>
-
-      <ion-button size="small" (click)="goToRegister()">
-        Crear Cuenta
-      </ion-button>
-
-      <ion-button size="small" (click)="forgotPassword()">
-        ¿Olvidaste tu contraseña?
-      </ion-button>
-
     </div>
 
   </div>
