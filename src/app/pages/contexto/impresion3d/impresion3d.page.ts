@@ -6,7 +6,7 @@ import {
   ElementRef
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { RouterModule } from '@angular/router';
 import {
   IonContent,
   IonHeader,
@@ -16,8 +16,7 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
-  IonIcon
-} from '@ionic/angular/standalone';
+  IonIcon, IonButton, IonButtons } from '@ionic/angular/standalone';
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -26,7 +25,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
   templateUrl: './impresion3d.page.html',
   styleUrls: ['./impresion3d.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonButtons, IonButton, 
     CommonModule,
     IonContent,
     IonHeader,
@@ -36,7 +35,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
-    IonIcon
+    IonIcon,
+    CommonModule,
+    RouterModule
   ]
 })
 export class Impresion3dPage implements AfterViewInit, OnDestroy {
