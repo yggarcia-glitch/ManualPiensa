@@ -59,12 +59,14 @@
 
         <div class="navigation-buttons">
           
-          <ion-button 
-            fill="outline" 
+          <ion-button
+            fill="outline"
             color="dark"
-            (click)="cambiarPaso(-1)" 
-            [disabled]="pasoActual === 0">
-            <ion-icon name="arrow-back"></ion-icon>
+            (click)="cambiarPaso(-1)"
+            [disabled]="pasoActual === 0"
+            title="Atrás"
+            aria-label="Atrás">
+            <img src="assets/icon/flecha.png" width="22" height="22" alt="Atrás" />
           </ion-button>
 
           <ion-button 
