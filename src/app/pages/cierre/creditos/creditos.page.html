@@ -1,17 +1,10 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-title>Créditos</ion-title>
-    
     <ion-buttons slot="end" class="top-icons">
-      <ion-button routerLink="/home" title="Inicio">
-        <img src="assets/icon/home.png" alt="home" width="30" />
-      </ion-button>
-      <ion-button routerLink="/componentes" title="Componentes">
-        <img src="assets/icon/componentes.png" alt="componentes" width="30" />
-      </ion-button>
-      <ion-button routerLink="/razon-social" title="Razón social">
-        <img src="assets/icon/razon.png" alt="razon" width="30" />
-      </ion-button>
+      <ion-button routerLink="/home"><img src="assets/icon/home.png" width="30" /></ion-button>
+      <ion-button routerLink="/componentes"><img src="assets/icon/componentes.png" width="30" /></ion-button>
+      <ion-button routerLink="/razon-social"><img src="assets/icon/razon.png" width="30" /></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -20,103 +13,109 @@
 
   <div class="header-banner">
     <h1>Fuentes y Recursos</h1>
-    <p>Reconocimiento a los creadores y herramientas</p>
+    <p>Reconocimiento a creadores y herramientas</p>
   </div>
 
   <div class="main-container">
 
     <div class="section-title">
-      <h3>Modelos de Impresión 3D</h3>
+      <h3>Modelos 3D (Descargas)</h3>
       <div class="divider"></div>
     </div>
 
     <ion-grid class="ion-no-padding">
       <ion-row>
-        <ion-col size="12" *ngFor="let item of modelos3D">
-          <a [href]="item.url" target="_blank" class="credit-card mb-3">
-            <div class="icon-box teal">
-              <ion-icon [name]="item.icono"></ion-icon>
+        <ion-col size="12" size-md="6" *ngFor="let item of modelos3D">
+          <ion-accordion-group class="card-accordion">
+            <ion-accordion value="item" [ngClass]="item.color">
+              
+              <ion-item slot="header" lines="none">
+                <div class="accordion-header-content">
+                  <div class="emoji-wrapper">
+                    <img [src]="item.icono" />
+                  </div>
+                  <div class="header-text">
+                    <span class="badge-level" [ngClass]="item.color">{{ item.titulo }}</span>
+                    <h4>{{ item.subtitulo }}</h4>
+                  </div>
+                </div>
+              </ion-item>
+
+              <div class="accordion-content" slot="content">
+                <p class="desc">{{ item.descripcion }}</p>
+                <div class="meta-row">
+                  <span class="time"><ion-icon name="time-outline"></ion-icon> {{ item.tiempo }}</span>
+                  <span class="source">Fuente: MakerWorld</span>
+                </div>
+                
+                <p class="cta-text">Presione para llevar a la página de descarga <ion-icon name="arrow-down"></ion-icon></p>
+
+                <a [href]="item.url" target="_blank" class="download-btn" [ngClass]="item.color">
+                  <span>Descargar STL</span>
+                  <ion-icon name="cloud-download-outline"></ion-icon>
+                </a>
+              </div>
+
+            </ion-accordion>
+          </ion-accordion-group>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="section-title mt-4">
+      <h3>Plataformas y Recursos</h3>
+      <div class="divider"></div>
+    </div>
+
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="12" size-md="4" *ngFor="let fuente of fuentesRecursos">
+          <a [href]="fuente.url" target="_blank" class="resource-card">
+            <div class="res-icon-img">
+              <img [src]="fuente.imagen" />
             </div>
-            <div class="info-box">
-              <span class="category">{{ item.titulo }}</span>
-              <h4>{{ item.nombreModelo }}</h4>
-              <p>Creador: {{ item.autor }} (MakerWorld)</p>
+            <div class="res-info">
+              <strong>{{ fuente.nombre }}</strong>
+              <span>{{ fuente.uso }}</span>
             </div>
-            <div class="arrow-box">
-              <ion-icon name="open-outline"></ion-icon>
-            </div>
+            <ion-icon name="open-outline" class="arrow"></ion-icon>
           </a>
         </ion-col>
       </ion-row>
     </ion-grid>
 
     <div class="section-title mt-4">
-      <h3>Recursos Gráficos</h3>
+      <h3>Stack Tecnológico</h3>
       <div class="divider"></div>
     </div>
 
-    <div class="tech-list">
-      <div class="tech-item" *ngFor="let rec of recursosGraficos">
-        <a [href]="rec.url" target="_blank" class="item-link">
-          <div class="mini-icon">
-            <ion-icon [name]="rec.icono"></ion-icon>
-          </div>
-          <div class="item-text">
-            <strong>{{ rec.nombre }}</strong>
-            <span>{{ rec.desc }}</span>
-          </div>
-          <ion-icon name="chevron-forward" color="medium"></ion-icon>
-        </a>
-      </div>
+    <div class="tech-grid">
+      <a *ngFor="let tech of tecnologias" [href]="tech.url" target="_blank" class="tech-chip">
+        <ion-icon [name]="tech.iconName" [style.color]="tech.color"></ion-icon>
+        {{ tech.nombre }}
+      </a>
     </div>
 
     <div class="section-title mt-4">
-      <h3>Tecnología y Datos</h3>
-      <div class="divider"></div>
-    </div>
-
-    <div class="tech-list">
-      <div class="tech-item" *ngFor="let tech of tecnologias">
-        <a [href]="tech.url" target="_blank" class="item-link">
-          <div class="mini-icon blue">
-            <ion-icon name="code-slash-outline"></ion-icon>
-          </div>
-          <div class="item-text">
-            <strong>{{ tech.nombre }}</strong>
-            <span>{{ tech.desc }}</span>
-          </div>
-          <ion-icon name="chevron-forward" color="medium"></ion-icon>
-        </a>
-      </div>
-    </div>
-
-    <div class="section-title mt-4">
-      <h3>Colaboración IA</h3>
+      <h3>Asistencia Inteligencia Artificial</h3>
       <div class="divider purple"></div>
     </div>
 
-    <ion-grid class="ion-no-padding">
-      <ion-row>
-        <ion-col size="12" size-md="6" *ngFor="let ia of asistenciaIA">
-          <a [href]="ia.url" target="_blank" class="ia-card">
-            <div class="ia-icon">
-              <ion-icon name="sparkles"></ion-icon>
-            </div>
-            <div>
-              <strong>{{ ia.nombre }}</strong>
-              <span class="role-badge">{{ ia.rol }}</span>
-              <p>{{ ia.desc }}</p>
-            </div>
-          </a>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    
+    <div class="ai-container">
+      <a [href]="ia.url" target="_blank" class="ai-card" *ngFor="let ia of asistenciaIA">
+        <div class="ai-img-wrapper">
+          <img [src]="ia.imagen" />
+        </div>
+        <div class="ai-content">
+          <strong>{{ ia.nombre }}</strong>
+          <p>{{ ia.rol }}</p>
+        </div>
+      </a>
+    </div>
+
     <div class="footer-note">
-      <p>Aplicación desarrollada con fines educativos.</p>
       <p class="copyright">© 2026 ManualPiensa</p>
     </div>
 
   </div>
-
 </ion-content>

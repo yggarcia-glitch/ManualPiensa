@@ -183,7 +183,7 @@ cambiarPaso(delta: number) {
 
     // 1. Configurar Cámara (Más lejos para asegurar que quepa el modelo grande)
     this.camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 1000);
-    this.camera.position.set(5, 5, 5);
+    this.camera.position.set(5, 1, 5);
     this.camera.lookAt(0, 0, 0);
 
     // 2. Configurar Renderer
