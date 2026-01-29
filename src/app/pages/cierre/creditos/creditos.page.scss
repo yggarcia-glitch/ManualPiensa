@@ -4,18 +4,19 @@
 	--primary: #0aa79a;
 
 	display: block;
-	background: transparent;
+	background: linear-gradient(135deg, #e0f7f5 0%, #c8eee8 100%);
 	color: #111;
 }
 
 
 ion-content {
-	--background: #ffffff;
+	--background: #b2f6ed;
 }
 
 .credits-content {
 	padding: 14px 16px;
-	background: transparent;
+	background: rgba(141, 255, 246, 0.08);
+	border-radius: 8px;
 }
 
 
@@ -35,9 +36,16 @@ ion-content {
 	background: #ffffff;
 	border-radius: 12px;
 	padding: 18px;
-
+	margin-bottom: 16px;
 	border: 1.5px solid rgba(10, 167, 154, 0.35);
 	box-shadow: 0 6px 16px rgba(16, 24, 40, 0.08);
+	transition: all 0.3s ease;
+}
+
+.card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 12px 24px rgba(16, 24, 40, 0.12);
+	border-color: rgba(10, 167, 154, 0.5);
 }
 
 .card h2 {
@@ -57,12 +65,55 @@ ion-content {
 
 .card ul {
 	margin: 6px 0 0 16px;
+	padding-left: 0;
+}
+
+.card li {
+	list-style: none;
+	margin-bottom: 16px;
+	padding-left: 20px;
+	position: relative;
+	transition: all 0.3s ease;
+}
+
+.card li:hover {
+	padding-left: 24px;
+}
+
+.card li:before {
+	content: "→";
+	position: absolute;
+	left: 0;
+	color: var(--primary);
+	font-weight: bold;
 }
 
 .card a {
 	color: var(--primary);
 	text-decoration: underline;
+	font-weight: 600;
+	transition: all 0.3s ease;
 }
+
+.card a:hover {
+	color: #07897f;
+	text-decoration-thickness: 2px;
+}
+
+.source-description {
+	font-size: 0.9rem;
+	color: #555;
+	margin-top: 6px;
+	margin-bottom: 0;
+	font-style: italic;
+	line-height: 1.4;
+}
+
+.sources-list {
+	list-style: none !important;
+	padding-left: 0 !important;
+}
+
 .note {
 	margin-top: 10px;
 	color: #6b6b6b;
