@@ -1,13 +1,169 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>razon-social</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="razon-social-page">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">razon-social</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- HERO SECTION -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>Tech Repair Pro</h1>
+      <p class="hero-subtitle">Soluciones profesionales en reparación de computadoras</p>
+      <ion-button fill="solid" color="light" (click)="scrollToContacto()">
+        Contactarnos
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- SOBRE NOSOTROS -->
+  <section class="section about-section">
+    <div class="section-content">
+      <h2>¿Quiénes Somos?</h2>
+      <p>Tech Repair Pro es una empresa especializada en reparación y mantenimiento de computadoras con más de 10 años de experiencia en el mercado. Nuestro equipo de técnicos certificados está dedicado a proporcionar soluciones rápidas, confiables y de calidad a nuestros clientes.</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-card">
+        <ion-icon name="shield-checkmark"></ion-icon>
+        <h3>Confiable</h3>
+        <p>Garantía en todos nuestros trabajos</p>
+      </div>
+      <div class="about-card">
+        <ion-icon name="flash"></ion-icon>
+        <h3>Rápido</h3>
+        <p>Reparaciones en 24-48 horas</p>
+      </div>
+      <div class="about-card">
+        <ion-icon name="star"></ion-icon>
+        <h3>Profesional</h3>
+        <p>Técnicos certificados y capacitados</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISIÓN, VISIÓN, VALORES -->
+  <section class="section mvv-section">
+    <div class="mvv-card">
+      <div class="mvv-icon mision-icon">
+        <ion-icon name="bullseye"></ion-icon>
+      </div>
+      <h3>Misión</h3>
+      <p>Proporcionar servicios de reparación de computadoras con excelencia, puntualidad y precios justos para mejorar la experiencia digital de nuestros clientes.</p>
+    </div>
+
+    <div class="mvv-card">
+      <div class="mvv-icon vision-icon">
+        <ion-icon name="telescope"></ion-icon>
+      </div>
+      <h3>Visión</h3>
+      <p>Ser la empresa líder en reparación de equipos tecnológicos, reconocida por nuestra calidad, innovación y compromiso con la satisfacción del cliente.</p>
+    </div>
+
+    <div class="mvv-card">
+      <div class="mvv-icon valores-icon">
+        <ion-icon name="heart"></ion-icon>
+      </div>
+      <h3>Valores</h3>
+      <p>Integridad, transparencia, compromiso con la calidad, respeto al cliente y sostenibilidad ambiental en todos nuestros procesos.</p>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="section services-section">
+    <h2>Nuestros Servicios</h2>
+    <div class="services-grid">
+      <div class="service-card" *ngFor="let servicio of servicios">
+        <ion-icon [name]="servicio.icon" class="service-icon"></ion-icon>
+        <h3>{{ servicio.nombre }}</h3>
+        <p>{{ servicio.descripcion }}</p>
+        <span class="service-price">{{ servicio.precio }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section class="section team-section">
+    <h2>Nuestro Equipo</h2>
+    <div class="team-grid">
+      <div class="team-card" *ngFor="let miembro of equipo">
+        <div class="team-avatar">
+          <ion-icon [name]="miembro.icon"></ion-icon>
+        </div>
+        <h3>{{ miembro.nombre }}</h3>
+        <p class="position">{{ miembro.puesto }}</p>
+        <p class="expertise">{{ miembro.especialidad }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="section contact-section" #contactoSection>
+    <h2>Contacto</h2>
+    <div class="contact-info">
+      <div class="info-item">
+        <ion-icon name="call"></ion-icon>
+        <div>
+          <h4>Teléfono</h4>
+          <p>(+1) 555-0123</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <ion-icon name="mail"></ion-icon>
+        <div>
+          <h4>Email</h4>
+          <p>info@techrepairpro.com</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <ion-icon name="location"></ion-icon>
+        <div>
+          <h4>Dirección</h4>
+          <p>Calle Principal 123, Ciudad, País</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <ion-icon name="time"></ion-icon>
+        <div>
+          <h4>Horario</h4>
+          <p>Lun-Vie: 9:00 - 18:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO DE CONTACTO -->
+  <section class="section form-section">
+    <h2>Envíanos tu Consulta</h2>
+    <form (ngSubmit)="enviarFormulario()">
+      <ion-item fill="outline" class="form-item">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="formulario.nombre" name="nombre" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="form-item">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [(ngModel)]="formulario.email" name="email" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="form-item">
+        <ion-label position="floating">Teléfono</ion-label>
+        <ion-input [(ngModel)]="formulario.telefono" name="telefono" type="tel"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="form-item">
+        <ion-label position="floating">Asunto</ion-label>
+        <ion-input [(ngModel)]="formulario.asunto" name="asunto" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="form-item textarea">
+        <ion-label position="floating">Mensaje</ion-label>
+        <ion-textarea [(ngModel)]="formulario.mensaje" name="mensaje" rows="5"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" color="primary" class="submit-btn">
+        Enviar Mensaje
+      </ion-button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 Tech Repair Pro. Todos los derechos reservados.</p>
+  </footer>
+
 </ion-content>

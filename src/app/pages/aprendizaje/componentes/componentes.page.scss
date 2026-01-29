@@ -1,0 +1,242 @@
+.componentes-page {
+  --background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  padding: 30px 20px;
+  text-align: center;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
+}
+
+/* CONTENEDOR COMPONENTES */
+.componentes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* TARJETA COMPONENTE */
+.componente-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.25);
+  }
+}
+
+/* ICONO COMPONENTE */
+.icon-wrapper {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+
+  .componente-icon {
+    font-size: 2.5rem;
+    color: #ffffff;
+  }
+}
+
+/* NOMBRE COMPONENTE */
+.componente-nombre {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+}
+
+/* DESCRIPCIÓN */
+.componente-descripcion {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin: 0 0 15px 0;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* FOOTER TARJETA */
+.componente-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #ecf0f1;
+
+  .componente-categoria {
+    background: #e8f4f8;
+    color: #667eea;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .arrow-icon {
+    color: #667eea;
+    font-size: 1.2rem;
+  }
+}
+
+/* MODAL DETALLES */
+.modal-content {
+  --background: #f5f7fa;
+}
+
+.detalles-wrapper {
+  padding: 30px 20px;
+  max-width: 100%;
+}
+
+.detalle-icon {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+
+  ion-icon {
+    font-size: 3rem;
+    color: #ffffff;
+  }
+}
+
+.detalles-wrapper > h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+
+.detalle-categoria {
+  text-align: center;
+  background: #e8f4f8;
+  color: #667eea;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: 600;
+  margin: 0 auto 25px;
+  display: block;
+  width: fit-content;
+}
+
+/* SECCIONES DETALLE */
+.detalle-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  h3 {
+    color: #667eea;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+  }
+
+  p {
+    color: #555555;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  ion-list {
+    --background: transparent;
+    padding: 0;
+
+    ion-item {
+      --background: transparent;
+      --border-radius: 8px;
+      --padding-start: 0;
+      --padding-end: 0;
+      margin-bottom: 10px;
+      color: #555555;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ion-icon {
+      margin-right: 15px;
+    }
+  }
+}
+
+.problema-icon {
+  color: #e74c3c;
+  font-size: 1.3rem;
+}
+
+.solucion-icon {
+  color: #27ae60;
+  font-size: 1.3rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .componentes-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .detalles-wrapper {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .componentes-container {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    padding: 20px 15px;
+  }
+
+  .header h1 {
+    font-size: 1.3rem;
+  }
+
+  .header p {
+    font-size: 0.85rem;
+  }
+}
