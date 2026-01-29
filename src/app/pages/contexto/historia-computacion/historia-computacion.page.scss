@@ -23,13 +23,13 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background: #1976d2;
+  background: #15b6ce;
 }
 
 .punto {
   width: 16px;
   height: 16px;
-  background: #1976d2;
+  background: #15b6ce;
   border-radius: 50%;
   margin-left: 12px;
   margin-top: 20px;
@@ -56,7 +56,7 @@
 
 h2 {
   margin: 0;
-  color: #1976d2;
+  color: #15b6ce;
 }
 
 .fecha {
@@ -77,7 +77,7 @@ button {
   margin-top: 10px;
   background: none;
   border: none;
-  color: #1976d2;
+  color: #15b6ce;
   font-weight: bold;
   cursor: pointer;
 }
@@ -98,7 +98,7 @@ ion-button {
 }
 
 ion-button:hover {
-  --color: #2563eb;
+  --color: #15b6ce;
 }
 
 ion-icon {

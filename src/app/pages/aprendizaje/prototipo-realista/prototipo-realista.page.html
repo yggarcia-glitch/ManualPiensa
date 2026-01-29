@@ -3,7 +3,6 @@
     <ion-title>Nivel Avanzado: Master Build</ion-title>
 
     <ion-buttons slot="end">
-      
       <div class="badge-container">
         <ion-badge class="step-badge" mode="ios">
           {{ pasoActual + 1 }} / {{ pasos.length }}
@@ -21,15 +20,17 @@
       <ion-button routerLink="/creditos">
         <img src="assets/icon/creditos.png" width="32" />
       </ion-button>
-      
+
       <ion-button routerLink="/impresion3d">
         <img src="assets/icon/3d.png" width="32" />
       </ion-button>
-
     </ion-buttons>
   </ion-toolbar>
-  
-  <ion-progress-bar [value]="(pasoActual + 1) / pasos.length" class="custom-progress"></ion-progress-bar>
+
+  <ion-progress-bar
+    [value]="(pasoActual + 1) / pasos.length"
+    class="custom-progress">
+  </ion-progress-bar>
 </ion-header>
 
 <ion-content>
@@ -38,14 +39,15 @@
       <div class="visor-container">
         <div #threeContainer class="three-canvas"></div>
         <div class="visor-badge">
-          <ion-icon name="water-outline"></ion-icon> Refrigeración Líquida
+          <ion-icon name="water-outline"></ion-icon>
+          Refrigeración Líquida
         </div>
       </div>
     </div>
 
     <div class="right-panel">
       <div class="manual-card-content">
-        
+
         <div class="step-info">
           <div class="header-row">
             <ion-badge color="dark" class="phase-badge">
@@ -53,9 +55,9 @@
             </ion-badge>
             <span class="tech-id">ID: {{ pasoActual + 300 }}</span>
           </div>
-          
+
           <h2 class="step-title">{{ pasos[pasoActual].titulo }}</h2>
-          
+
           <p class="step-desc">
             {{ pasos[pasoActual].descripcion }}
           </p>
@@ -72,18 +74,27 @@
           </div>
 
           <div class="pro-tip" *ngIf="pasos[pasoActual].tip">
-             <div class="tip-text">
+            <div class="tip-text">
               <strong>Tip Experto:</strong> {{ pasos[pasoActual].tip }}
             </div>
           </div>
         </div>
 
         <div class="navigation-buttons">
-          <ion-button fill="outline" color="medium" (click)="cambiarPaso(-1)" [disabled]="pasoActual === 0">
-            <ion-icon name="arrow-back"></ion-icon>
+          <ion-button
+            fill="outline"
+            color="medium"
+            (click)="cambiarPaso(-1)"
+            [disabled]="pasoActual === 0"
+            title="Atrás"
+            aria-label="Atrás">
+            <img src="assets/icon/flecha.png" width="22" height="22" alt="Atrás" />
           </ion-button>
 
-          <ion-button expand="block" class="flex-grow action-btn" (click)="cambiarPaso(1)">
+          <ion-button
+            expand="block"
+            class="flex-grow action-btn"
+            (click)="cambiarPaso(1)">
             <span *ngIf="pasoActual < pasos.length - 1">Siguiente Paso</span>
             <span *ngIf="pasoActual === pasos.length - 1">Finalizar Build</span>
           </ion-button>
