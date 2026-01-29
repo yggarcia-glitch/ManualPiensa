@@ -69,27 +69,21 @@ export class RazonSocialPage implements OnInit {
 
   equipo: MiembroEquipo[] = [
     {
-      nombre: 'Carlos Mendez',
+      nombre: 'Yosef Garcia',
       puesto: 'Gerente Técnico',
       especialidad: 'Especialista en Hardware y Diagnóstico',
-      icon: 'person-circle'
+      icon: 'https://i.pinimg.com/736x/84/82/11/84821170858b072e8509bea8337161b6.jpg'
     },
     {
-      nombre: 'Ana García',
-      puesto: 'Técnica Senior',
+      nombre: 'Felipe Molina',
+      puesto: 'Técnico Senior',
       especialidad: 'Recuperación de Datos y Soluciones Software',
       icon: 'person-circle'
     },
     {
-      nombre: 'Juan López',
+      nombre: 'Jonnathan Villa',
       puesto: 'Técnico',
       especialidad: 'Mantenimiento y Actualizaciones',
-      icon: 'person-circle'
-    },
-    {
-      nombre: 'María Rodríguez',
-      puesto: 'Técnica',
-      especialidad: 'Laptops y Equipos Portátiles',
       icon: 'person-circle'
     }
   ];
@@ -111,15 +105,6 @@ export class RazonSocialPage implements OnInit {
     this.contactoSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
-  enviarFormulario() {
-    if (this.formulario.nombre && this.formulario.email && this.formulario.mensaje) {
-      console.log('Formulario enviado:', this.formulario);
-      alert('¡Gracias! Tu mensaje ha sido enviado. Nos contactaremos pronto.');
-      this.resetFormulario();
-    } else {
-      alert('Por favor completa todos los campos requeridos.');
-    }
-  }
 
   resetFormulario() {
     this.formulario = {
