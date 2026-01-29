@@ -5,16 +5,14 @@
     <div class="hero-content">
       <h1>Tech Repair Pro</h1>
       <p class="hero-subtitle">Soluciones profesionales en reparación de computadoras</p>
-      <ion-button fill="solid" color="light" (click)="scrollToContacto()">
-        Contactarnos
-      </ion-button>
+      
     </div>
   </div>
 
   <!-- SOBRE NOSOTROS -->
   <section class="section about-section">
     <div class="section-content">
-      <h2>¿Quiénes Somos?</h2>
+      <h2>¿Nuestro Propósito?</h2>
       <p>Tech Repair Pro es una empresa especializada en reparación y mantenimiento de computadoras con más de 10 años de experiencia en el mercado. Nuestro equipo de técnicos certificados está dedicado a proporcionar soluciones rápidas, confiables y de calidad a nuestros clientes.</p>
     </div>
     <div class="about-cards">
@@ -38,12 +36,13 @@
 
 
   <!-- EQUIPO -->
-  <section class="section team-section">
+  <section class="section team-section" #contactoSection>
     <h2>Equipo de Trabajo</h2>
     <div class="team-grid">
       <div class="team-card" *ngFor="let miembro of equipo">
         <div class="team-avatar">
-          <ion-icon [name]="miembro.icon"></ion-icon>
+          <img *ngIf="miembro.icon.includes('assets') || miembro.icon.includes('http')" [src]="miembro.icon" [alt]="miembro.nombre" class="avatar-image">
+          <ion-icon *ngIf="!miembro.icon.includes('assets') && !miembro.icon.includes('http')" [name]="miembro.icon"></ion-icon>
         </div>
         <h3>{{ miembro.nombre }}</h3>
         <p class="position">{{ miembro.puesto }}</p>

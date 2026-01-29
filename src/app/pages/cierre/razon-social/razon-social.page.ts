@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonTextarea } from '@ionic/angular/standalone';
+import { IonContent, IonButton, IonIcon } from '@ionic/angular/standalone';
 
 interface Servicio {
   nombre: string;
@@ -22,7 +22,7 @@ interface MiembroEquipo {
   templateUrl: './razon-social.page.html',
   styleUrls: ['./razon-social.page.scss'],
   standalone: true,
-  imports: [IonContent, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonTextarea, CommonModule, FormsModule]
+  imports: [IonContent, IonButton, IonIcon, CommonModule]
 })
 export class RazonSocialPage implements OnInit {
 
@@ -72,19 +72,19 @@ export class RazonSocialPage implements OnInit {
       nombre: 'Yosef Garcia',
       puesto: 'Gerente Técnico',
       especialidad: 'Especialista en Hardware y Diagnóstico',
-      icon: 'https://i.pinimg.com/736x/84/82/11/84821170858b072e8509bea8337161b6.jpg'
+      icon: 'assets/yosep.jpg'
     },
     {
       nombre: 'Felipe Molina',
       puesto: 'Técnico Senior',
       especialidad: 'Recuperación de Datos y Soluciones Software',
-      icon: 'person-circle'
+      icon: 'assets/felipao.jpg'
     },
     {
       nombre: 'Jonnathan Villa',
       puesto: 'Técnico',
       especialidad: 'Mantenimiento y Actualizaciones',
-      icon: 'person-circle'
+      icon: 'assets/jonna.jpg'
     }
   ];
 
