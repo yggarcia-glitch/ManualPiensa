@@ -1,0 +1,150 @@
+/* --- LAYOUT PRINCIPAL --- */
+.split-layout {
+  display: flex;
+  height: 100%;
+  background: #f8fafc;
+}
+
+/* --- PANEL 3D (60%) --- */
+.left-panel {
+  flex: 6; 
+  height: 100%;
+  background: #f1f5f9; /* Gris azulado muy suave */
+  position: relative;
+  border-right: 1px solid #cbd5e1;
+}
+
+.visor-container {
+  width: 100%;
+  height: 100%;
+}
+
+.three-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.visor-badge {
+  position: absolute;
+  bottom: 25px;
+  right: 25px; /* Lo moví a la derecha para variar */
+  background: rgba(15, 23, 42, 0.8); /* Fondo oscuro técnico */
+  padding: 6px 14px;
+  border-radius: 4px; /* Bordes más cuadrados */
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* --- PANEL TEXTO (40%) --- */
+.right-panel {
+  flex: 4;
+  height: 100%;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+.manual-card-content {
+  padding: 32px 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.step-info {
+  flex: 1;
+}
+
+/* Cabecera Técnica */
+.tech-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.step-category {
+  padding: 6px 12px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.step-tech-id {
+  font-family: monospace;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.step-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a; /* Azul muy oscuro */
+  margin: 0 0 16px 0;
+  line-height: 1.25;
+}
+
+.step-desc {
+  font-size: 15px;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Caja de especificación técnica */
+.tech-specs {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 10px;
+  font-size: 13px;
+  color: #334155;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-family: monospace; /* Fuente tipo código */
+}
+
+.step-note {
+  background: #fff7ed; /* Naranja muy suave */
+  border-left: 3px solid #f97316; /* Naranja alerta */
+  padding: 12px;
+  border-radius: 2px;
+  display: flex;
+  gap: 12px;
+  color: #9a3412;
+  font-size: 13px;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+
+/* --- BOTONES --- */
+.navigation-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  padding-bottom: 20px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 20px;
+}
+
+.flex-grow {
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .split-layout { flex-direction: column; }
+  .left-panel { height: 40vh; flex: none; }
+  .right-panel { height: auto; flex: auto; }
+}
+
+.navbar {
+  --background: #ffffff;
+  --color: #1f2937;
+  border-bottom: 1px solid #e5e7eb;
+}

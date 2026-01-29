@@ -1,34 +1,121 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-title>Créditos</ion-title>
     <ion-buttons slot="end" class="top-icons">
-      <ion-button routerLink="/home" title="Inicio">
-        <img src="assets/icon/home.png" alt="home" />
-      </ion-button>
-      <ion-button routerLink="/razon-social" title="Razón social">
-        <img src="assets/icon/razon.png" alt="razon" />
-      </ion-button>
+      <ion-button routerLink="/home"><img src="assets/icon/home.png" width="30" /></ion-button>
+      <ion-button routerLink="/componentes"><img src="assets/icon/componentes.png" width="30" /></ion-button>
+      <ion-button routerLink="/razon-social"><img src="assets/icon/razon.png" width="30" /></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="credits-content">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Créditos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="bg-light">
 
-  <div class="card">
-    <h2>Fuentes y recursos</h2>
-    <p>Listado de referencias y recursos utilizados en el proyecto:</p>
-    <ul id="sources">
-      <li><a href="https://makerworld.com/es/models/1220519-gaming-computer-pc-fun#profileId-1806177" target="_blank" rel="noopener">Prototipo realista — MakerWorld</a></li>
-      <li><a href="https://makerworld.com/es/models/1011670-mini-pc-with-fitted-parts#profileId-991166" target="_blank" rel="noopener">Prototipo intermedio — MakerWorld</a></li>
-      <li><a href="https://makerworld.com/es/models/228869-gaming-pc-kit-card#profileId-246413" target="_blank" rel="noopener">Prototipo básico — MakerWorld</a></li>
-      <li><a href="https://es.wikipedia.org/wiki/Historia_de_la_inform%C3%A1tica" target="_blank" rel="noopener">Historia de la informática — Wikipedia</a></li>
-      <li><a href="https://threejs.org/" target="_blank" rel="noopener">Three.js — Biblioteca 3D</a></li>
-    </ul>
+  <div class="header-banner">
+    <h1>Fuentes y Recursos</h1>
+    <p>Reconocimiento a creadores y herramientas</p>
+  </div>
+
+  <div class="main-container">
+
+    <div class="section-title">
+      <h3>Modelos 3D (Descargas)</h3>
+      <div class="divider"></div>
+    </div>
+
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="12" size-md="6" *ngFor="let item of modelos3D">
+          <ion-accordion-group class="card-accordion">
+            <ion-accordion value="item" [ngClass]="item.color">
+              
+              <ion-item slot="header" lines="none">
+                <div class="accordion-header-content">
+                  <div class="emoji-wrapper">
+                    <img [src]="item.icono" />
+                  </div>
+                  <div class="header-text">
+                    <span class="badge-level" [ngClass]="item.color">{{ item.titulo }}</span>
+                    <h4>{{ item.subtitulo }}</h4>
+                  </div>
+                </div>
+              </ion-item>
+
+              <div class="accordion-content" slot="content">
+                <p class="desc">{{ item.descripcion }}</p>
+                <div class="meta-row">
+                  <span class="time"><ion-icon name="time-outline"></ion-icon> {{ item.tiempo }}</span>
+                  <span class="source">Fuente: MakerWorld</span>
+                </div>
+                
+                <p class="cta-text">Presione para llevar a la página de descarga <ion-icon name="arrow-down"></ion-icon></p>
+
+                <a [href]="item.url" target="_blank" class="download-btn" [ngClass]="item.color">
+                  <span>Descargar STL</span>
+                  <ion-icon name="cloud-download-outline"></ion-icon>
+                </a>
+              </div>
+
+            </ion-accordion>
+          </ion-accordion-group>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="section-title mt-4">
+      <h3>Plataformas y Recursos</h3>
+      <div class="divider"></div>
+    </div>
+
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="12" size-md="4" *ngFor="let fuente of fuentesRecursos">
+          <a [href]="fuente.url" target="_blank" class="resource-card">
+            <div class="res-icon-img">
+              <img [src]="fuente.imagen" />
+            </div>
+            <div class="res-info">
+              <strong>{{ fuente.nombre }}</strong>
+              <span>{{ fuente.uso }}</span>
+            </div>
+            <ion-icon name="open-outline" class="arrow"></ion-icon>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="section-title mt-4">
+      <h3>Stack Tecnológico</h3>
+      <div class="divider"></div>
+    </div>
+
+    <div class="tech-grid">
+      <a *ngFor="let tech of tecnologias" [href]="tech.url" target="_blank" class="tech-chip">
+        <ion-icon [name]="tech.iconName" [style.color]="tech.color"></ion-icon>
+        {{ tech.nombre }}
+      </a>
+    </div>
+
+    <div class="section-title mt-4">
+      <h3>Asistencia Inteligencia Artificial</h3>
+      <div class="divider purple"></div>
+    </div>
+
+    <div class="ai-container">
+      <a [href]="ia.url" target="_blank" class="ai-card" *ngFor="let ia of asistenciaIA">
+        <div class="ai-img-wrapper">
+          <img [src]="ia.imagen" />
+        </div>
+        <div class="ai-content">
+          <strong>{{ ia.nombre }}</strong>
+          <p>{{ ia.rol }}</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="footer-note">
+      <p class="copyright">© 2026 ManualPiensa</p>
+    </div>
 
   </div>
 </ion-content>

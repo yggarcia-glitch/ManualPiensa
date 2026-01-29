@@ -1,127 +1,136 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonModal, IonButtons, IonButton, IonList, IonItem, IonLabel } from '@ionic/angular/standalone';
-
-interface Componente {
-  id: number;
-  nombre: string;
-  icon: string;
-  descripcion: string;
-  categoria: string;
-  funcion: string;
-  problemas: string[];
-  soluciones: string[];
-}
+import { IonicModule } from '@ionic/angular';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-componentes',
   templateUrl: './componentes.page.html',
   styleUrls: ['./componentes.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonModal, IonButtons, IonButton, IonList, IonItem, IonLabel, CommonModule, FormsModule]
+  imports: [CommonModule, IonicModule, RouterLink]
 })
-export class ComponentesPage implements OnInit {
+export class ComponentesPage {
 
-  componentes: Componente[] = [
+  modalAbierto = false;
+  componenteSeleccionado: any = null;
+
+  // --- SECCIÓN DE NIVELES (Con tus nuevos Emojis) ---
+  guiasArmado = [
     {
-      id: 1,
-      nombre: 'Procesador (CPU)',
-      icon: 'hardware-chip',
-      descripcion: 'Cerebro de la computadora',
-      categoria: 'Hardware Crítico',
-      funcion: 'Ejecuta todas las instrucciones y realiza los cálculos del sistema',
-      problemas: ['Sobrecalentamiento', 'Bajo rendimiento', 'Fallos frecuentes'],
-      soluciones: ['Limpiar ventilador', 'Cambiar pasta térmica', 'Mejorar ventilación']
+      nivel: 'Nivel 1',
+      titulo: 'Básico',
+      ruta: '/prototipo-basico',
+      // Emoji Bebé 👶
+      icono: 'assets/icon/bebe.png', 
+      color: 'teal',
+      descripcion: 'Aprende lo esencial.'
     },
     {
-      id: 2,
-      nombre: 'Memoria RAM',
-      icon: 'server',
-      descripcion: 'Memoria volátil de acceso rápido',
-      categoria: 'Memoria',
-      funcion: 'Almacena datos temporales durante la ejecución de programas',
-      problemas: ['Pantalla azul', 'Congelamiento', 'Pérdida de datos'],
-      soluciones: ['Reinstalar módulos', 'Limpiar contactos', 'Reemplazar módulo defectuoso']
+      nivel: 'Nivel 2',
+      titulo: 'Intermedio',
+      ruta: '/prototipo-intermedio',
+      // Emoji Nerd 🤓
+      icono: 'assets/icon/nerd.png', 
+      color: 'blue',
+      descripcion: 'Ensamble detallado.'
     },
     {
-      id: 3,
-      nombre: 'Disco Duro / SSD',
-      icon: 'save',
-      descripcion: 'Almacenamiento permanente',
-      categoria: 'Almacenamiento',
-      funcion: 'Almacena archivos, aplicaciones y sistema operativo',
-      problemas: ['Clics extraños', 'Lentitud extrema', 'Errores de lectura'],
-      soluciones: ['Ejecutar CHKDSK', 'Desfragmentar', 'Reemplazar si está dañado']
-    },
-    {
-      id: 4,
-      nombre: 'Placa Base',
-      icon: 'grid',
-      descripcion: 'Conecta todos los componentes',
-      categoria: 'Hardware Crítico',
-      funcion: 'Proporciona comunicación entre todos los componentes del sistema',
-      problemas: ['No enciende', 'Puertos dañados', 'Corrosión'],
-      soluciones: ['Verificar conexiones', 'Reemplazar batería CMOS', 'Reparación de puerto']
-    },
-    {
-      id: 5,
-      nombre: 'Fuente de Poder',
-      icon: 'flash',
-      descripcion: 'Suministra energía al sistema',
-      categoria: 'Energía',
-      funcion: 'Convierte corriente alterna en corriente continua para los componentes',
-      problemas: ['No enciende', 'Apagones inesperados', 'Ruido anormal'],
-      soluciones: ['Verificar conexión de cables', 'Reemplazar fuente', 'Limpiar ventilador']
-    },
-    {
-      id: 6,
-      nombre: 'Tarjeta Gráfica',
-      icon: 'image',
-      descripcion: 'Procesamiento de gráficos',
-      categoria: 'Periféricos',
-      funcion: 'Procesa gráficos y video para mostrar en el monitor',
-      problemas: ['Pantalla negra', 'Artefactos visuales', 'Juegos lentos'],
-      soluciones: ['Actualizar drivers', 'Limpiar ventilador', 'Reemplazar tarjeta']
-    },
-    {
-      id: 7,
-      nombre: 'Ventilador',
-      icon: 'leaf',
-      descripcion: 'Sistema de enfriamiento',
-      categoria: 'Refrigeración',
-      funcion: 'Disipa el calor generado por los componentes',
-      problemas: ['Ruido excesivo', 'No gira', 'Polvo acumulado'],
-      soluciones: ['Limpiar aspas', 'Lubricar rodamientos', 'Reemplazar ventilador']
-    },
-    {
-      id: 8,
-      nombre: 'Batería',
-      icon: 'battery-full',
-      descripcion: 'Energía para laptops',
-      categoria: 'Energía',
-      funcion: 'Proporciona energía portátil a laptops y dispositivos móviles',
-      problemas: ['Carga rápida', 'No retiene carga', 'Batería inflada'],
-      soluciones: ['Calibrar batería', 'Reemplazar batería', 'Usar cargador certificado']
+      nivel: 'Nivel 3',
+      titulo: 'Master Pro',
+      ruta: '/prototipo-realista',
+      // Emoji Gafas de Sol 😎 (Asegúrate de que el archivo se llame así, con guiones)
+      icono: 'assets/icon/gafas-de-sol.png', 
+      color: 'dark',
+      descripcion: 'Refrigeración Líquida.'
     }
   ];
 
-  modalOpen = false;
-  componenteSeleccionado: Componente | null = null;
+  // --- LISTA DE COMPONENTES ---
+  listaComponentes = [
+    {
+      nombre: 'Procesador (CPU)',
+      resumen: 'Cerebro de la computadora.',
+      categoria: 'Hardware Crítico',
+      icono: 'assets/icon/cpu.png', 
+      descripcion: 'La Unidad Central de Procesamiento (CPU) es el componente principal que interpreta las instrucciones y procesa los datos de los programas.',
+      funcion: 'Ejecuta todas las instrucciones lógicas y matemáticas, coordinando el funcionamiento de los demás componentes.',
+      problemas: 'Sobrecalentamiento (PC se apaga sola), pines doblados al instalar, o lentitud extrema por "Thermal Throttling".'
+    },
+    {
+      nombre: 'Memoria RAM',
+      resumen: 'Memoria volátil de acceso rápido.',
+      categoria: 'Memoria',
+      icono: 'assets/icon/memoria-ram.png',
+      descripcion: 'La RAM (Random Access Memory) almacena temporalmente los datos de los programas que estás usando en ese momento.',
+      funcion: 'Permite al procesador acceder a los datos de forma instantánea. Al apagar la PC, esta información se borra.',
+      problemas: 'Pantallazos azules (BSOD), el equipo no arranca y emite pitidos, o congelamientos repentinos.'
+    },
+    {
+      nombre: 'Disco Duro / SSD',
+      resumen: 'Almacenamiento permanente.',
+      categoria: 'Almacenamiento',
+      icono: 'assets/icon/disco-duro.png',
+      descripcion: 'Es donde se guardan tus archivos, fotos, sistema operativo y programas incluso cuando apagas la computadora.',
+      funcion: 'Leer y escribir datos a largo plazo. Los SSD son mucho más rápidos que los discos mecánicos (HDD).',
+      problemas: 'Lentitud al abrir programas, ruidos mecánicos (clic-clic en HDD), o corrupción de archivos.'
+    },
+    {
+      nombre: 'Placa Base',
+      resumen: 'Conecta todos los componentes.',
+      categoria: 'Hardware Crítico',
+      icono: 'assets/icon/placa-base.png',
+      descripcion: 'La Motherboard es el circuito principal donde se enchufan el CPU, RAM, discos y tarjeta gráfica.',
+      funcion: 'Sirve como la autopista de comunicación entre todos los componentes del sistema.',
+      problemas: 'El equipo enciende ventiladores pero no da video, puertos USB muertos, o capacitores hinchados.'
+    },
+    {
+      nombre: 'Fuente de Poder',
+      resumen: 'Suministra energía al sistema.',
+      categoria: 'Energía',
+      icono: 'assets/icon/fuente-de-alimentacion.png',
+      descripcion: 'Convierte la corriente alterna (AC) de tu enchufe en corriente continua (DC) que la PC puede usar.',
+      funcion: 'Alimentar de forma estable a cada componente (12V, 5V, 3.3V).',
+      problemas: 'Olor a quemado, reinicios aleatorios cuando juegas, o el PC no enciende en absoluto.'
+    },
+    {
+      nombre: 'Tarjeta Gráfica',
+      resumen: 'Procesamiento de gráficos.',
+      categoria: 'Periféricos',
+      icono: 'assets/icon/tarjeta-de-video.png',
+      descripcion: 'La GPU se encarga de calcular todo lo que ves en el monitor, especialmente juegos y renderizado 3D.',
+      funcion: 'Liberar al CPU de la carga gráfica para mostrar imágenes fluidas y de alta calidad.',
+      problemas: 'Artefactos visuales (rayas en pantalla), pantalla negra al instalar drivers, o ventiladores muy ruidosos.'
+    },
+    {
+      nombre: 'Ventilador / Cooler',
+      resumen: 'Sistema de enfriamiento.',
+      categoria: 'Refrigeración',
+      icono: 'assets/icon/ventilador.png',
+      descripcion: 'Dispositivos encargados de mover aire caliente fuera del gabinete o del disipador del CPU.',
+      funcion: 'Mantener las temperaturas dentro de rangos operativos seguros para evitar daños.',
+      problemas: 'Ruido excesivo (rodamiento gastado), acumulación de polvo que bloquea el aire, o vibraciones.'
+    },
+    {
+      nombre: 'Batería',
+      resumen: 'Energía para laptops.',
+      categoria: 'Energía',
+      icono: 'assets/icon/bateria.png',
+      descripcion: 'Componente químico que almacena energía para que una portátil funcione sin estar enchufada.',
+      funcion: 'Proveer autonomía y portabilidad al equipo.',
+      problemas: 'La carga dura muy poco, la laptop se apaga al desconectar el cargador, o la batería se hincha (peligroso).'
+    }
+  ];
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
-  selectComponente(componente: Componente) {
+  abrirDetalle(componente: any) {
     this.componenteSeleccionado = componente;
-    this.modalOpen = true;
+    this.modalAbierto = true;
   }
 
   cerrarModal() {
-    this.modalOpen = false;
+    this.modalAbierto = false;
     this.componenteSeleccionado = null;
   }
-
 }
