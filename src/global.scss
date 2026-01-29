@@ -35,3 +35,33 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+/* Small utilities for background and card spacing used by credits pages */
+.app-bg-soft {
+	background: linear-gradient(180deg, rgba(10,167,154,0.02) 0%, rgba(255,255,255,0.02) 100%);
+}
+
+.page-padding {
+	padding: 16px;
+}
+
+/* Tipografía base para mejorar legibilidad */
+html, body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #111214;
+	line-height: 1.6;
+}
+
+/* Asegurar contraste legible para enlaces y botones */
+a, .ion-color-primary {
+	color: var(--ion-color-primary) !important;
+}
+
+/* Forzar fondo blanco globalmente (anula modo oscuro del sistema) */
+html, body, ion-app, .ion-page, .ion-content {
+	background: #ffffff !important;
+	color: #111 !important;
+}

@@ -1,13 +1,56 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>impresion3d</ion-title>
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>{{ tituloPagina }}</ion-title>
+      <ion-buttons slot="end">
+
+      <ion-button routerLink="/home">
+        <img src="assets/icon/home.png" width="32" />
+      </ion-button>
+
+      <ion-button routerLink="/componentes">
+        <img src="assets/icon/componentes.png" width="32" />
+      </ion-button>
+
+      <ion-button routerLink="/creditos">
+        <img src="assets/icon/creditos.png" width="32" />
+      </ion-button>
+      
+      <ion-button routerLink="/historia-computacion">
+        <img src="assets/icon/computa.png" width="32" />
+      </ion-button>
+
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">impresion3d</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-content>
+      <div #threeContainer class="three-container"></div>
+    </ion-card-content>
+  </ion-card>
+
+  <section class="cards-grid">
+
+    <ion-card class="evo-card" *ngFor="let item of evolucionImpresion3D">
+      
+      <div class="card-img">
+        <img [src]="item.imagen" [alt]="item.titulo" />
+      </div>
+
+      <ion-card-header>
+        <ion-card-title>
+          {{ item.anio }} – {{ item.titulo }}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ item.descripcion }}
+      </ion-card-content>
+
+    </ion-card>
+
+  </section>
+
 </ion-content>

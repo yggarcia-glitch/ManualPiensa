@@ -1,42 +1,61 @@
 <ion-header>
-  <ion-toolbar color="light">
+  <ion-toolbar class="navbar">
     <ion-title>Historia de la Computación</ion-title>
-    <!-- Navbar simple con botones de ejemplo -->
+
     <ion-buttons slot="end">
-      <ion-button>Inicio</ion-button>
-      <ion-button>Aprendizaje</ion-button>
-      <ion-button>Prototipos</ion-button>
+
+      <ion-button routerLink="/home">
+        <img src="assets/icon/home.png" width="32" />
+      </ion-button>
+
+      <ion-button routerLink="/componentes">
+        <img src="assets/icon/componentes.png" width="32" />
+      </ion-button>
+
+      <ion-button routerLink="/creditos">
+        <img src="assets/icon/creditos.png" width="32" />
+      </ion-button>
+      
+      <ion-button routerLink="/impresion3d">
+        <img src="assets/icon/3d.png" width="32" />
+      </ion-button>
+
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="historia-computacion-page" fullscreen>
+<ion-content class="fondo">
 
-  <div class="timeline-container">
-    <div class="timeline">
-      <ng-container *ngFor="let evento of eventos; let i = index">
-        <div class="timeline-event" [ngClass]="{'up': i % 2 === 0, 'down': i % 2 !== 0}">
-          
-          <!-- Tarjeta expandible -->
-          <div class="timeline-card" (click)="evento.expanded = !evento.expanded">
-            <img [src]="evento.img" [alt]="evento.titulo" />
-            <h3>{{ evento.titulo }}</h3>
-            <p [class.expanded]="evento.expanded">{{ evento.descripcion }}</p>
-            <span class="expand-btn">{{ evento.expanded ? '▲' : '▼' }}</span>
-          </div>
+  <div class="timeline">
 
-          <!-- Fecha -->
-          <div class="timeline-date">{{ evento.anio }}</div>
+    <div class="evento" *ngFor="let evento of eventos">
+      
+      <div class="linea"></div>
 
-          <!-- Línea y punto -->
-          <div class="timeline-point-container">
-            <div class="timeline-line"></div>
-            <div class="timeline-point"></div>
-          </div>
+      <div class="punto"></div>
 
+      <div class="tarjeta">
+        
+ 
+      <img [src]="evento.imagen" alt="{{ evento.titulo }}">
+
+
+        <h2>{{ evento.titulo }}</h2>
+        <span class="fecha">{{ evento.fecha }}</span>
+
+        <p class="resumen">{{ evento.resumen }}</p>
+
+        <div *ngIf="evento.abierto" class="detalle">
+          <p>{{ evento.detalle }}</p>
         </div>
-      </ng-container>
+
+        <button (click)="toggleEvento(evento)">
+          {{ evento.abierto ? 'Ver menos ▲' : 'Ver más ▼' }}
+        </button>
+
+      </div>
     </div>
+
   </div>
 
 </ion-content>

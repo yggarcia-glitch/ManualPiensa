@@ -1,0 +1,114 @@
+:host {
+	--bg: #f5f7f8;
+	--card-bg: #ffffff;
+	--primary: #0aa79a;
+
+	display: block;
+	background: transparent;
+	color: #111;
+}
+
+
+ion-content {
+	--background: #ffffff;
+}
+
+.credits-content {
+	padding: 14px 16px;
+	background: transparent;
+}
+
+
+.top-icons img {
+	width: 32px;
+	height: 32px;
+	object-fit: contain;
+}
+
+.top-icons ion-button {
+	--padding-start: 4px;
+	--padding-end: 4px;
+}
+
+
+.card {
+	background: #ffffff;
+	border-radius: 12px;
+	padding: 18px;
+
+	border: 1.5px solid rgba(10, 167, 154, 0.35);
+	box-shadow: 0 6px 16px rgba(16, 24, 40, 0.08);
+}
+
+.card h2 {
+	margin: 0 0 8px;
+	color: #0b2a2a;
+	font-size: 1.25rem;
+	font-weight: 800;
+	letter-spacing: 0.2px;
+}
+
+.card p,
+.card li {
+	font-size: 1rem;
+	line-height: 1.5;
+	color: #222;
+}
+
+.card ul {
+	margin: 6px 0 0 16px;
+}
+
+.card a {
+	color: var(--primary);
+	text-decoration: underline;
+}
+.note {
+	margin-top: 10px;
+	color: #6b6b6b;
+	font-size: 0.92rem;
+}
+
+
+ion-header ion-toolbar {
+	--background: #ffffff;
+	color: #000;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+ion-header ion-title {
+	color: #000000;
+	font-weight: 700;
+}
+:host::before,
+:host::after {
+	content: '';
+	position: fixed;
+	z-index: -1;
+	pointer-events: none;
+}
+
+:host::before {
+	left: -8vw;
+	top: -18vh;
+	width: 50vw;
+	height: 50vw;
+	background: radial-gradient(
+		circle at 30% 30%,
+		rgba(10, 167, 154, 0.06),
+		transparent 30%
+	);
+}
+
+:host::after {
+	right: -6vw;
+	bottom: -12vh;
+	width: 40vw;
+	height: 40vw;
+	background: radial-gradient(
+		circle at 60% 60%,
+		rgba(10, 167, 154, 0.04),
+		transparent 40%
+	);
+}
+	
