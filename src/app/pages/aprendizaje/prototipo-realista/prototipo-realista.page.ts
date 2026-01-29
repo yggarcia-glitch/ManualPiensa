@@ -271,3 +271,6 @@ cambiarPaso(delta: number) {
     }
   }
 }
+
+
+//si lo lees ando hasta el **** del piensa
