@@ -19,7 +19,7 @@ import {
   IonIcon, IonButton, IonButtons } from '@ionic/angular/standalone';
 
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 @Component({
   selector: 'app-impresion3d',
   templateUrl: './impresion3d.page.html',
