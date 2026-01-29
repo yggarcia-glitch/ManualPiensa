@@ -1,0 +1,465 @@
+.razon-social-page {
+  --background: #f8f9fa;
+}
+
+/* HERO SECTION */
+.hero-section {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  padding: 80px 20px;
+  text-align: center;
+
+  .hero-content {
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin: 0 0 30px 0;
+      opacity: 0.95;
+    }
+
+    ion-button {
+      margin-top: 20px;
+    }
+  }
+}
+
+/* SECCIONES */
+.section {
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-content {
+  text-align: center;
+  margin-bottom: 40px;
+
+  h2 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin: 0 0 20px 0;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #555555;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+/* SECCIÓN ABOUT */
+.about-section {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin: 0 0 30px 0;
+  }
+
+  p {
+    text-align: center;
+    color: #555555;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+
+  .about-card {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    ion-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+    }
+
+    p {
+      margin: 0;
+      opacity: 0.95;
+    }
+  }
+}
+
+/* SECCIÓN MVV */
+.mvv-section {
+  background: transparent;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 50px 20px;
+
+  .mvv-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.25);
+    }
+
+    .mvv-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 20px;
+      font-size: 2.5rem;
+      color: #ffffff;
+
+      &.mision-icon {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+      }
+
+      &.vision-icon {
+        background: linear-gradient(135deg, #f093fb, #f5576c);
+      }
+
+      &.valores-icon {
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+      }
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      margin: 0 0 15px 0;
+    }
+
+    p {
+      color: #555555;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+}
+
+/* SECCIÓN SERVICIOS */
+.services-section {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin: 0 0 40px 0;
+  }
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+
+  .service-card {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border-left: 4px solid #667eea;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      color: #667eea;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: #2c3e50;
+      margin: 0 0 10px 0;
+    }
+
+    p {
+      color: #555555;
+      font-size: 0.95rem;
+      margin: 0 0 15px 0;
+      line-height: 1.5;
+    }
+
+    .service-price {
+      display: block;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+  }
+}
+
+/* SECCIÓN EQUIPO */
+.team-section {
+  background: transparent;
+
+  h2 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin: 0 0 40px 0;
+  }
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+
+  .team-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.25);
+    }
+
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 15px;
+
+      ion-icon {
+        font-size: 2.5rem;
+        color: #ffffff;
+      }
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      color: #2c3e50;
+      margin: 0 0 5px 0;
+    }
+
+    .position {
+      color: #667eea;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin: 0 0 10px 0;
+    }
+
+    .expertise {
+      color: #555555;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+  }
+}
+
+/* SECCIÓN CONTACTO */
+.contact-section {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin: 0 0 40px 0;
+  }
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+
+    ion-icon {
+      font-size: 1.8rem;
+      color: #667eea;
+      margin-top: 5px;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      color: #2c3e50;
+      margin: 0 0 5px 0;
+    }
+
+    p {
+      color: #555555;
+      margin: 0;
+    }
+  }
+}
+
+/* FORMULARIO */
+.form-section {
+  background: transparent;
+  padding: 50px 20px;
+
+  h2 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin: 0 0 40px 0;
+  }
+
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.form-item {
+  margin-bottom: 20px;
+  --background: #f8f9fa;
+  --border-radius: 8px;
+  --border-color: #e0e0e0;
+  --highlight-color-focused: #667eea;
+
+  &.textarea {
+    ion-textarea {
+      min-height: 150px;
+    }
+  }
+}
+
+.submit-btn {
+  --background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 48px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+/* FOOTER */
+.footer {
+  background: #2c3e50;
+  color: #ffffff;
+  text-align: center;
+  padding: 25px 20px;
+  font-size: 0.95rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 50px 20px;
+
+    .hero-content {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .section {
+    padding: 30px 15px;
+  }
+
+  .section-content h2,
+  .services-section h2,
+  .team-section h2,
+  .contact-section h2,
+  .form-section h2 {
+    font-size: 1.7rem;
+  }
+
+  .about-cards,
+  .mvv-section,
+  .services-grid,
+  .team-grid,
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section form {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 40px 15px;
+
+    .hero-content {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .section-content h2,
+  .services-section h2,
+  .team-section h2,
+  .contact-section h2,
+  .form-section h2 {
+    font-size: 1.5rem;
+  }
+}

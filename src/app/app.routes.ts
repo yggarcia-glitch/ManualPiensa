@@ -20,7 +20,7 @@ export const routes: Routes = [
   },
   {
     path: 'historia-creditos',
-    loadComponent: () => import('./pages/contexto/historia-computacion/creditos.page').then( m => m.CreditosHistoriaPage)
+    loadComponent: () => import('./pages/cierre/creditos/creditos.page').then( m => m.CreditosPage)
   },
   {
     path: 'impresion3d',

@@ -1,13 +1,90 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>prototipo-basico</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="navbar">
+    <ion-title>Guía de Ensamble</ion-title>
+    <ion-buttons slot="end">
+      <ion-badge color="medium" mode="ios">
+        {{ pasoActual + 1 }} / {{ pasos.length }}
+      </ion-badge>
+    </ion-buttons>
+    <ion-buttons slot="end">
+
+      <ion-button routerLink="/home">
+        <img src="assets/icon/home.png" width="32" />
+      </ion-button>
+
+      <ion-button routerLink="/componentes">
+        <img src="assets/icon/componentes.png" width="32" />
+      </ion-button>
+
+      <ion-button routerLink="/creditos">
+        <img src="assets/icon/creditos.png" width="32" />
+      </ion-button>
+      </ion-buttons>
   </ion-toolbar>
+  <ion-progress-bar [value]="(pasoActual + 1) / pasos.length" color="success"></ion-progress-bar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">prototipo-basico</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  
+  <div class="split-layout">
+
+    <div class="left-panel">
+      <div class="visor-container">
+        <div #threeContainer class="three-canvas"></div>
+        <div class="visor-badge">
+          <ion-icon name="cube-outline"></ion-icon> Rotando Automáticamente
+        </div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="manual-card-content">
+        
+        <div class="step-info">
+          <ion-badge [color]="pasos[pasoActual].color" class="step-category">
+            {{ pasos[pasoActual].categoria }}
+          </ion-badge>
+          
+          <h2 class="step-title">{{ pasos[pasoActual].titulo }}</h2>
+          
+          <p class="step-desc">
+            {{ pasos[pasoActual].descripcion }}
+          </p>
+
+          <div class="step-note" *ngIf="pasos[pasoActual].nota">
+            <ion-icon name="bulb-outline" slot="start"></ion-icon>
+            <span>{{ pasos[pasoActual].nota }}</span>
+          </div>
+        </div>
+
+        <div class="navigation-buttons">
+          
+          <ion-button 
+            fill="outline" 
+            color="dark"
+            (click)="cambiarPaso(-1)" 
+            [disabled]="pasoActual === 0">
+            <ion-icon name="arrow-back"></ion-icon>
+          </ion-button>
+
+          <ion-button 
+            expand="block" 
+            class="flex-grow" 
+            color="dark"
+            (click)="cambiarPaso(1)">
+            
+            <span *ngIf="pasoActual < pasos.length - 1">Siguiente Paso</span>
+            <span *ngIf="pasoActual === pasos.length - 1">¡Finalizar!</span>
+            <ion-icon slot="end" name="arrow-forward" *ngIf="pasoActual < pasos.length - 1"></ion-icon>
+            <ion-icon slot="end" name="checkmark-done" *ngIf="pasoActual === pasos.length - 1"></ion-icon>
+          
+          </ion-button>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
 </ion-content>

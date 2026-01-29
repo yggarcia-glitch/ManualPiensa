@@ -1,13 +1,61 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>razon-social</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="razon-social-page">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">razon-social</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- HERO SECTION -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>Tech Repair Pro</h1>
+      <p class="hero-subtitle">Soluciones profesionales en reparación de computadoras</p>
+      <ion-button fill="solid" color="light" (click)="scrollToContacto()">
+        Contactarnos
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- SOBRE NOSOTROS -->
+  <section class="section about-section">
+    <div class="section-content">
+      <h2>¿Quiénes Somos?</h2>
+      <p>Tech Repair Pro es una empresa especializada en reparación y mantenimiento de computadoras con más de 10 años de experiencia en el mercado. Nuestro equipo de técnicos certificados está dedicado a proporcionar soluciones rápidas, confiables y de calidad a nuestros clientes.</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-card">
+        <ion-icon name="shield-checkmark"></ion-icon>
+        <h3>Confiable</h3>
+        <p>Garantía en todos nuestros trabajos</p>
+      </div>
+      <div class="about-card">
+        <ion-icon name="flash"></ion-icon>
+        <h3>Rápido</h3>
+        <p>Reparaciones en 24-48 horas</p>
+      </div>
+      <div class="about-card">
+        <ion-icon name="star"></ion-icon>
+        <h3>Profesional</h3>
+        <p>Técnicos certificados y capacitados</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- EQUIPO -->
+  <section class="section team-section">
+    <h2>Equipo de Trabajo</h2>
+    <div class="team-grid">
+      <div class="team-card" *ngFor="let miembro of equipo">
+        <div class="team-avatar">
+          <ion-icon [name]="miembro.icon"></ion-icon>
+        </div>
+        <h3>{{ miembro.nombre }}</h3>
+        <p class="position">{{ miembro.puesto }}</p>
+        <p class="expertise">{{ miembro.especialidad }}</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 Tech Repair Pro. Todos los derechos reservados.</p>
+  </footer>
+
 </ion-content>
