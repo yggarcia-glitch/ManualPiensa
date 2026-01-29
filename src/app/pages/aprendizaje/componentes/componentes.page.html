@@ -1,82 +1,116 @@
-<ion-content class="componentes-page">
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Componentes</ion-title>
 
-  <div class="header">
+    <ion-buttons slot="end">
+      <ion-button routerLink="/home">
+        <img src="assets/icon/home.png" width="32" />
+      </ion-button>
+      <ion-button routerLink="/componentes">
+        <img src="assets/icon/componentes.png" width="32" />
+      </ion-button>
+      <ion-button routerLink="/creditos">
+        <img src="assets/icon/creditos.png" width="32" />
+      </ion-button>
+      <ion-button routerLink="/impresion3d">
+        <img src="assets/icon/3d.png" width="32" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-light">
+  
+  <div class="header-banner">
     <h1>Componentes de Reparación</h1>
     <p>Conoce las partes principales de una computadora</p>
   </div>
 
-  <div class="componentes-container">
-    <div class="componente-card" *ngFor="let componente of componentes" (click)="selectComponente(componente)">
-      
-      <div class="icon-wrapper">
-        <ion-icon [name]="componente.icon" class="componente-icon"></ion-icon>
+  <div class="cards-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="3" *ngFor="let comp of listaComponentes">
+          <div class="custom-card" (click)="abrirDetalle(comp)">
+            <div class="card-icon">
+              <img [src]="comp.icono" style="width: 32px; height: 32px; object-fit: contain;" />
+            </div>
+            <h3>{{ comp.nombre }}</h3>
+            <p class="short-desc">{{ comp.resumen }}</p>
+            <span class="category-tag">{{ comp.categoria }}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="assembly-section">
+      <div class="section-title">
+        <h2>¿Listo para armar?</h2>
+        <p>Pon en práctica lo aprendido con nuestras guías interactivas</p>
       </div>
 
-      <h2 class="componente-nombre">{{ componente.nombre }}</h2>
-      
-      <p class="componente-descripcion">{{ componente.descripcion }}</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="4" *ngFor="let guia of guiasArmado">
+            
+            <div class="manual-link-card" [routerLink]="[guia.ruta]" [ngClass]="guia.color">
+              <div class="manual-icon">
+                <img [src]="guia.icono" style="width: 35px; height: 35px; object-fit: contain;" />
+              </div>
+              <div class="manual-text">
+                <span class="manual-level">{{ guia.nivel }}</span>
+                <h3>{{ guia.titulo }}</h3>
+                <p>{{ guia.descripcion }}</p>
+              </div>
+              <div class="manual-arrow">
+                <ion-icon name="arrow-forward-circle"></ion-icon>
+              </div>
+            </div>
 
-      <div class="componente-footer">
-        <span class="componente-categoria">{{ componente.categoria }}</span>
-        <ion-icon name="arrow-forward" class="arrow-icon"></ion-icon>
-      </div>
-
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
+
   </div>
 
-  <!-- MODAL DE DETALLES -->
-  <ion-modal [isOpen]="modalOpen" (didDismiss)="cerrarModal()">
+  <ion-modal [isOpen]="modalAbierto" (didDismiss)="cerrarModal()">
     <ng-template>
-      <ion-header>
+      <ion-header class="ion-no-border">
         <ion-toolbar>
           <ion-title>{{ componenteSeleccionado?.nombre }}</ion-title>
           <ion-buttons slot="end">
-            <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+            <ion-button (click)="cerrarModal()" color="medium">
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
-
-      <ion-content class="modal-content" *ngIf="componenteSeleccionado">
-        <div class="detalles-wrapper">
-          
-          <div class="detalle-icon">
-            <ion-icon [name]="componenteSeleccionado.icon"></ion-icon>
+      
+      <ion-content class="modal-content">
+        <div class="modal-body">
+          <div class="modal-icon-wrapper">
+            <div class="card-icon large">
+              <img [src]="componenteSeleccionado?.icono" style="width: 50px; height: 50px; object-fit: contain;" />
+            </div>
           </div>
 
-          <h2>{{ componenteSeleccionado.nombre }}</h2>
-          
-          <p class="detalle-categoria">{{ componenteSeleccionado.categoria }}</p>
-
-          <div class="detalle-section">
-            <h3>Descripción</h3>
-            <p>{{ componenteSeleccionado.descripcion }}</p>
+          <h2 class="text-center title-teal">{{ componenteSeleccionado?.nombre }}</h2>
+          <div class="text-center mb-4">
+            <span class="category-tag large-tag">{{ componenteSeleccionado?.categoria }}</span>
           </div>
 
-          <div class="detalle-section">
-            <h3>Función Principal</h3>
-            <p>{{ componenteSeleccionado.funcion }}</p>
+          <div class="info-section">
+            <h4 class="label-teal">Descripción</h4>
+            <div class="info-box">{{ componenteSeleccionado?.descripcion }}</div>
           </div>
-
-          <div class="detalle-section">
-            <h3>Problemas Comunes</h3>
-            <ion-list>
-              <ion-item *ngFor="let problema of componenteSeleccionado.problemas">
-                <ion-icon name="alert-circle" slot="start" class="problema-icon"></ion-icon>
-                <ion-label>{{ problema }}</ion-label>
-              </ion-item>
-            </ion-list>
+          <div class="info-section">
+            <h4 class="label-teal">Función Principal</h4>
+            <div class="info-box">{{ componenteSeleccionado?.funcion }}</div>
           </div>
-
-          <div class="detalle-section">
-            <h3>Soluciones</h3>
-            <ion-list>
-              <ion-item *ngFor="let solucion of componenteSeleccionado.soluciones">
-                <ion-icon name="checkmark-circle" slot="start" class="solucion-icon"></ion-icon>
-                <ion-label>{{ solucion }}</ion-label>
-              </ion-item>
-            </ion-list>
+          <div class="info-section">
+            <h4 class="label-teal">Problemas Comunes</h4>
+            <div class="info-box">{{ componenteSeleccionado?.problemas }}</div>
           </div>
-
         </div>
       </ion-content>
     </ng-template>

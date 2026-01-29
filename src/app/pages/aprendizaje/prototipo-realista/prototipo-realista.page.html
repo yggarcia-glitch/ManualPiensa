@@ -1,34 +1,44 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar color="dark">
-    <ion-title class="pro-title">
-      MASTER BUILD <span class="version">v3.0</span>
-    </ion-title>
+  <ion-toolbar>
+    <ion-title>Nivel Avanzado: Master Build</ion-title>
+
     <ion-buttons slot="end">
-      <ion-badge color="tertiary" mode="ios" class="step-counter">
-        {{ pasoActual + 1 }} / {{ pasos.length }}
-      </ion-badge>
+      
+      <div class="badge-container">
+        <ion-badge class="step-badge" mode="ios">
+          {{ pasoActual + 1 }} / {{ pasos.length }}
+        </ion-badge>
+      </div>
+
+      <ion-button routerLink="/home">
+        <img src="assets/icon/home.png" width="32" />
+      </ion-button>
+
+      <ion-button routerLink="/componentes">
+        <img src="assets/icon/componentes.png" width="32" />
+      </ion-button>
+
+      <ion-button routerLink="/creditos">
+        <img src="assets/icon/creditos.png" width="32" />
+      </ion-button>
+      
+      <ion-button routerLink="/impresion3d">
+        <img src="assets/icon/3d.png" width="32" />
+      </ion-button>
+
     </ion-buttons>
   </ion-toolbar>
-  <div class="pro-progress-container">
-    <div class="pro-progress-bar" [style.width.%]="((pasoActual + 1) / pasos.length) * 100"></div>
-  </div>
+  
+  <ion-progress-bar [value]="(pasoActual + 1) / pasos.length" class="custom-progress"></ion-progress-bar>
 </ion-header>
 
-<ion-content class="pro-content">
-  
+<ion-content>
   <div class="split-layout">
-
     <div class="left-panel">
       <div class="visor-container">
         <div #threeContainer class="three-canvas"></div>
-        
-        <div class="hud-overlay">
-          <div class="hud-item">
-            <ion-icon name="snow-outline"></ion-icon> COOLING: AIO 360mm
-          </div>
-          <div class="hud-item">
-            <ion-icon name="hardware-chip-outline"></ion-icon> STATUS: ASSEMBLY
-          </div>
+        <div class="visor-badge">
+          <ion-icon name="water-outline"></ion-icon> Refrigeración Líquida
         </div>
       </div>
     </div>
@@ -37,71 +47,49 @@
       <div class="manual-card-content">
         
         <div class="step-info">
-          
           <div class="header-row">
             <ion-badge color="dark" class="phase-badge">
               FASE {{ pasos[pasoActual].fase }}
             </ion-badge>
-            <span class="tech-id">OP-CODE: {{ pasoActual + 200 }}</span>
+            <span class="tech-id">ID: {{ pasoActual + 300 }}</span>
           </div>
           
-          <h1 class="step-title">{{ pasos[pasoActual].titulo }}</h1>
+          <h2 class="step-title">{{ pasos[pasoActual].titulo }}</h2>
           
           <p class="step-desc">
             {{ pasos[pasoActual].descripcion }}
           </p>
 
-          <div class="specs-grid">
-            <div class="spec-item">
+          <div class="specs-box">
+            <div class="spec-row">
               <span class="label">Herramienta:</span>
               <span class="value">{{ pasos[pasoActual].herramienta }}</span>
             </div>
-            <div class="spec-item">
+            <div class="spec-row">
               <span class="label">Precaución:</span>
               <span class="value text-warning">{{ pasos[pasoActual].riesgo }}</span>
             </div>
           </div>
 
           <div class="pro-tip" *ngIf="pasos[pasoActual].tip">
-            <div class="tip-icon">
-              <ion-icon name="flash"></ion-icon>
-            </div>
-            <div class="tip-content">
-              <strong>EXPERT TIP:</strong> {{ pasos[pasoActual].tip }}
+             <div class="tip-text">
+              <strong>Tip Experto:</strong> {{ pasos[pasoActual].tip }}
             </div>
           </div>
-
         </div>
 
         <div class="navigation-buttons">
-          
-          <ion-button 
-            fill="outline" 
-            color="light"
-            class="nav-btn"
-            (click)="cambiarPaso(-1)" 
-            [disabled]="pasoActual === 0">
-            <ion-icon name="chevron-back"></ion-icon>
+          <ion-button fill="outline" color="medium" (click)="cambiarPaso(-1)" [disabled]="pasoActual === 0">
+            <ion-icon name="arrow-back"></ion-icon>
           </ion-button>
 
-          <ion-button 
-            expand="block" 
-            class="flex-grow action-btn" 
-            color="tertiary"
-            (click)="cambiarPaso(1)">
-            
-            <span *ngIf="pasoActual < pasos.length - 1">CONFIRMAR PASO</span>
-            <span *ngIf="pasoActual === pasos.length - 1">FINALIZAR BUILD</span>
-            <ion-icon slot="end" name="chevron-forward" *ngIf="pasoActual < pasos.length - 1"></ion-icon>
-            <ion-icon slot="end" name="rocket" *ngIf="pasoActual === pasos.length - 1"></ion-icon>
-          
+          <ion-button expand="block" class="flex-grow action-btn" (click)="cambiarPaso(1)">
+            <span *ngIf="pasoActual < pasos.length - 1">Siguiente Paso</span>
+            <span *ngIf="pasoActual === pasos.length - 1">Finalizar Build</span>
           </ion-button>
-
         </div>
 
       </div>
     </div>
-
   </div>
-
 </ion-content>

@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prototipo-intermedio',
   templateUrl: './prototipo-intermedio.page.html',
   styleUrls: ['./prototipo-intermedio.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule]
+  imports: [CommonModule, IonicModule, RouterModule]
 })
 export class PrototipoIntermedioPage implements AfterViewInit, OnDestroy {
 
@@ -140,7 +142,8 @@ export class PrototipoIntermedioPage implements AfterViewInit, OnDestroy {
   private animationId!: number;
   private modelo: any;
 
-  constructor() { }
+constructor(private router: Router) { }
+  
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -149,10 +152,15 @@ export class PrototipoIntermedioPage implements AfterViewInit, OnDestroy {
     }, 50);
   }
 
-  cambiarPaso(delta: number) {
+cambiarPaso(delta: number) {
     const nuevo = this.pasoActual + delta;
+    
     if (nuevo >= 0 && nuevo < this.pasos.length) {
       this.pasoActual = nuevo;
+    }
+    // LÓGICA PARA SALIR AL TERMINAR
+    else if (delta > 0 && nuevo >= this.pasos.length) {
+      this.router.navigate(['/componentes']);
     }
   }
 

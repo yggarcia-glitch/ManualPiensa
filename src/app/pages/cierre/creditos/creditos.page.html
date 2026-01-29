@@ -1,34 +1,122 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-title>Créditos</ion-title>
+    
     <ion-buttons slot="end" class="top-icons">
       <ion-button routerLink="/home" title="Inicio">
-        <img src="assets/icon/home.png" alt="home" />
+        <img src="assets/icon/home.png" alt="home" width="30" />
+      </ion-button>
+      <ion-button routerLink="/componentes" title="Componentes">
+        <img src="assets/icon/componentes.png" alt="componentes" width="30" />
       </ion-button>
       <ion-button routerLink="/razon-social" title="Razón social">
-        <img src="assets/icon/razon.png" alt="razon" />
+        <img src="assets/icon/razon.png" alt="razon" width="30" />
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="credits-content">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Créditos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="bg-light">
 
-  <div class="card">
-    <h2>Fuentes y recursos</h2>
-    <p>Listado de referencias y recursos utilizados en el proyecto:</p>
-    <ul id="sources">
-      <li><a href="https://makerworld.com/es/models/1220519-gaming-computer-pc-fun#profileId-1806177" target="_blank" rel="noopener">Prototipo realista — MakerWorld</a></li>
-      <li><a href="https://makerworld.com/es/models/1011670-mini-pc-with-fitted-parts#profileId-991166" target="_blank" rel="noopener">Prototipo intermedio — MakerWorld</a></li>
-      <li><a href="https://makerworld.com/es/models/228869-gaming-pc-kit-card#profileId-246413" target="_blank" rel="noopener">Prototipo básico — MakerWorld</a></li>
-      <li><a href="https://es.wikipedia.org/wiki/Historia_de_la_inform%C3%A1tica" target="_blank" rel="noopener">Historia de la informática — Wikipedia</a></li>
-      <li><a href="https://threejs.org/" target="_blank" rel="noopener">Three.js — Biblioteca 3D</a></li>
-    </ul>
+  <div class="header-banner">
+    <h1>Fuentes y Recursos</h1>
+    <p>Reconocimiento a los creadores y herramientas</p>
+  </div>
+
+  <div class="main-container">
+
+    <div class="section-title">
+      <h3>Modelos de Impresión 3D</h3>
+      <div class="divider"></div>
+    </div>
+
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="12" *ngFor="let item of modelos3D">
+          <a [href]="item.url" target="_blank" class="credit-card mb-3">
+            <div class="icon-box teal">
+              <ion-icon [name]="item.icono"></ion-icon>
+            </div>
+            <div class="info-box">
+              <span class="category">{{ item.titulo }}</span>
+              <h4>{{ item.nombreModelo }}</h4>
+              <p>Creador: {{ item.autor }} (MakerWorld)</p>
+            </div>
+            <div class="arrow-box">
+              <ion-icon name="open-outline"></ion-icon>
+            </div>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="section-title mt-4">
+      <h3>Recursos Gráficos</h3>
+      <div class="divider"></div>
+    </div>
+
+    <div class="tech-list">
+      <div class="tech-item" *ngFor="let rec of recursosGraficos">
+        <a [href]="rec.url" target="_blank" class="item-link">
+          <div class="mini-icon">
+            <ion-icon [name]="rec.icono"></ion-icon>
+          </div>
+          <div class="item-text">
+            <strong>{{ rec.nombre }}</strong>
+            <span>{{ rec.desc }}</span>
+          </div>
+          <ion-icon name="chevron-forward" color="medium"></ion-icon>
+        </a>
+      </div>
+    </div>
+
+    <div class="section-title mt-4">
+      <h3>Tecnología y Datos</h3>
+      <div class="divider"></div>
+    </div>
+
+    <div class="tech-list">
+      <div class="tech-item" *ngFor="let tech of tecnologias">
+        <a [href]="tech.url" target="_blank" class="item-link">
+          <div class="mini-icon blue">
+            <ion-icon name="code-slash-outline"></ion-icon>
+          </div>
+          <div class="item-text">
+            <strong>{{ tech.nombre }}</strong>
+            <span>{{ tech.desc }}</span>
+          </div>
+          <ion-icon name="chevron-forward" color="medium"></ion-icon>
+        </a>
+      </div>
+    </div>
+
+    <div class="section-title mt-4">
+      <h3>Colaboración IA</h3>
+      <div class="divider purple"></div>
+    </div>
+
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="12" size-md="6" *ngFor="let ia of asistenciaIA">
+          <a [href]="ia.url" target="_blank" class="ia-card">
+            <div class="ia-icon">
+              <ion-icon name="sparkles"></ion-icon>
+            </div>
+            <div>
+              <strong>{{ ia.nombre }}</strong>
+              <span class="role-badge">{{ ia.rol }}</span>
+              <p>{{ ia.desc }}</p>
+            </div>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    <div class="footer-note">
+      <p>Aplicación desarrollada con fines educativos.</p>
+      <p class="copyright">© 2026 ManualPiensa</p>
+    </div>
 
   </div>
+
 </ion-content>

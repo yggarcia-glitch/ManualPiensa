@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prototipo-basico',
   templateUrl: './prototipo-basico.page.html',
   styleUrls: ['./prototipo-basico.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule]
+  imports: [CommonModule, IonicModule, RouterModule]
 })
 export class PrototipoBasicoPage implements AfterViewInit, OnDestroy {
 
@@ -88,7 +90,7 @@ export class PrototipoBasicoPage implements AfterViewInit, OnDestroy {
   private animationId!: number;
   private gabinete: any;
 
-  constructor() { }
+constructor(private router: Router) { }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -97,10 +99,16 @@ export class PrototipoBasicoPage implements AfterViewInit, OnDestroy {
     }, 50);
   }
 
-  cambiarPaso(delta: number) {
+ cambiarPaso(delta: number) {
     const nuevo = this.pasoActual + delta;
+
+    // Si el paso es válido, avanzamos
     if (nuevo >= 0 && nuevo < this.pasos.length) {
       this.pasoActual = nuevo;
+    } 
+    // SI EL USUARIO DA CLIC EN "FINALIZAR" (intenta ir más allá del último paso)
+    else if (delta > 0 && nuevo >= this.pasos.length) {
+      this.router.navigate(['/componentes']);
     }
   }
 

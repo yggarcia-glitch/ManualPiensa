@@ -1,13 +1,30 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar class="navbar">
     <ion-title>Nivel Intermedio: Ensamble Detallado</ion-title>
     <ion-buttons slot="end">
       <ion-badge color="tertiary" mode="ios">
         {{ pasoActual + 1 }} / {{ pasos.length }}
       </ion-badge>
     </ion-buttons>
+        <ion-buttons slot="end">
+
+      <ion-button routerLink="/home">
+        <img src="assets/icon/home.png" width="32" />
+      </ion-button>
+
+      <ion-button routerLink="/componentes">
+        <img src="assets/icon/componentes.png" width="32" />
+      </ion-button>
+
+      <ion-button routerLink="/creditos">
+        <img src="assets/icon/creditos.png" width="32" />
+      </ion-button>
+      
+
+    </ion-buttons>
   </ion-toolbar>
   <ion-progress-bar [value]="(pasoActual + 1) / pasos.length" color="tertiary"></ion-progress-bar>
+
 </ion-header>
 
 <ion-content>

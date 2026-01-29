@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prototipo-realista',
   templateUrl: './prototipo-realista.page.html',
   styleUrls: ['./prototipo-realista.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule]
+  imports: [CommonModule, IonicModule,RouterModule]
 })
 export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
 
@@ -17,7 +19,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
 
   pasoActual = 0;
 
-  // --- GUÍA PRO: REFRIGERACIÓN LÍQUIDA + GAMA ALTA ---
+  // --- GUÍA PRO (Mismo contenido, ahora en estilo claro) ---
   pasos = [
     {
       fase: '01 PREP',
@@ -147,7 +149,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
   private animationId!: number;
   private modelo: any;
 
-  constructor() { }
+ constructor(private router: Router) { }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -156,10 +158,15 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
     }, 50);
   }
 
-  cambiarPaso(delta: number) {
+cambiarPaso(delta: number) {
     const nuevo = this.pasoActual + delta;
+    
     if (nuevo >= 0 && nuevo < this.pasos.length) {
       this.pasoActual = nuevo;
+    }
+    // AL FINALIZAR EL BUILD, VOLVEMOS A COMPONENTES
+    else if (delta > 0 && nuevo >= this.pasos.length) {
+      this.router.navigate(['/componentes']);
     }
   }
 
@@ -171,66 +178,57 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
     const h = container.clientHeight;
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x0f172a); // Fondo oscuro
+    // FONDO CLARO IGUAL QUE LOS OTROS PROTOTIPOS
+    this.scene.background = new THREE.Color(0xeef2f6);
 
-    // 1. Configurar Cámara
+    // 1. Configurar Cámara (Más lejos para asegurar que quepa el modelo grande)
     this.camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 1000);
-    this.camera.position.set(5, 4, 5); // Posición inicial estándar
+    this.camera.position.set(5, 5, 5);
     this.camera.lookAt(0, 0, 0);
 
     // 2. Configurar Renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setSize(w, h);
-    this.renderer.shadowMap.enabled = true; // Sombras activadas
+    this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     container.appendChild(this.renderer.domElement);
 
-    // 3. Luces
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    // 3. Luces (Ajustadas para fondo claro)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     this.scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight(0x3b82f6, 2); // Azulado
-    mainLight.position.set(5, 5, 5);
-    mainLight.castShadow = true;
-    this.scene.add(mainLight);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    dirLight.position.set(5, 8, 5);
+    dirLight.castShadow = true;
+    this.scene.add(dirLight);
 
-    const rimLight = new THREE.SpotLight(0xa855f7, 4); // Violeta
-    rimLight.position.set(-5, 2, -5);
-    rimLight.lookAt(0, 0, 0);
-    this.scene.add(rimLight);
-
-    // 4. Cargar y Ajustar Modelo (SOLUCIÓN DEL MODELO "INVISIBLE")
+    // 4. Cargar y AUTO-AJUSTAR Modelo
     const loader = new GLTFLoader();
     
-    (loader as any).load('assets/prototipo-intermedio.glb', (gltf: any) => {
+    (loader as any).load('assets/prototipo-.glb', (gltf: any) => {
       this.modelo = gltf.scene;
 
-      // --- AUTO-AJUSTE DE TAMAÑO Y POSICIÓN ---
-      // Calculamos la caja que envuelve al modelo para saber sus medidas reales
+      // --- AUTO-ESCALADO (EL FIX MÁGICO) ---
+      // Mide el modelo y lo fuerza a tener un tamaño visible (3 unidades)
       const box = new THREE.Box3().setFromObject(this.modelo);
       const size = new THREE.Vector3();
-      box.getSize(size); // Dimensiones (Ancho, Alto, Profundo)
-
-      // Calculamos qué tan grande es el lado más largo
-      const maxDim = Math.max(size.x, size.y, size.z);
+      box.getSize(size);
       
-      // Queremos que mida aprox 3 unidades en el mundo 3D
-      const targetSize = 3; 
-      const scaleFactor = targetSize / maxDim;
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scaleFactor = 3 / maxDim; // Forzamos que mida 3 unidades
       
       this.modelo.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
       // --- AUTO-CENTRADO ---
-      // Calculamos el centro exacto del modelo
+      // Lo movemos para que su centro esté en 0,0,0
       const center = new THREE.Vector3();
       box.getCenter(center);
       
-      // Desplazamos el modelo para que su centro quede en (0,0,0)
       this.modelo.position.x = -center.x * scaleFactor;
       this.modelo.position.y = -center.y * scaleFactor;
       this.modelo.position.z = -center.z * scaleFactor;
 
-      // Habilitar sombras en todas las partes del modelo
+      // Sombras
       this.modelo.traverse((child: any) => {
         if (child.isMesh) {
           child.castShadow = true;
@@ -239,11 +237,9 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       });
 
       this.scene.add(this.modelo);
-      console.log('Modelo cargado. Escala aplicada:', scaleFactor);
+      console.log('Modelo cargado y ajustado automáticamente.');
 
-    }, undefined, (err: any) => {
-      console.error('ERROR CARGANDO EL MODELO:', err);
-    });
+    }, undefined, (err: any) => console.error('Error cargando modelo:', err));
 
     this.animate();
   }
@@ -251,7 +247,6 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
   private animate = () => {
     this.animationId = requestAnimationFrame(this.animate);
     
-    // Rotación lenta
     if (this.modelo) {
       this.modelo.rotation.y += 0.002;
     }

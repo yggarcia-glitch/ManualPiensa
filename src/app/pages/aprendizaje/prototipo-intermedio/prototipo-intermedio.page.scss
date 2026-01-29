@@ -142,3 +142,9 @@
   .left-panel { height: 40vh; flex: none; }
   .right-panel { height: auto; flex: auto; }
 }
+
+.navbar {
+  --background: #ffffff;
+  --color: #1f2937;
+  border-bottom: 1px solid #e5e7eb;
+}
