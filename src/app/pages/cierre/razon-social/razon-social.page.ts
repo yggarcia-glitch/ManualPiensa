@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { IonContent, IonIcon } from '@ionic/angular/standalone';
 
 interface Servicio {
   nombre: string;
@@ -22,7 +22,7 @@ interface MiembroEquipo {
   templateUrl: './razon-social.page.html',
   styleUrls: ['./razon-social.page.scss'],
   standalone: true,
-  imports: [IonContent, IonButton, IonIcon, CommonModule]
+  imports: [IonContent, IonIcon, CommonModule]
 })
 export class RazonSocialPage implements OnInit {
 
