@@ -25,17 +25,14 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
   templateUrl: './impresion3d.page.html',
   styleUrls: ['./impresion3d.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonButton, 
+  imports: [
     CommonModule,
     IonContent,
     IonHeader,
-    IonTitle,
     IonToolbar,
-    IonCard,
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
-    IonIcon,
     CommonModule,
     RouterModule
   ]

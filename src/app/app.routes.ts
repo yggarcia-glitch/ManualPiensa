@@ -11,16 +11,8 @@ export const routes: Routes = [
     loadComponent: () => import('./auth/login/login.page').then( m => m.LoginPage)
   },
   {
-    path: 'home',
-    loadComponent: () => import('./pages/home/home.page').then( m => m.HomePage)
-  },
-  {
     path: 'historia-computacion',
     loadComponent: () => import('./pages/contexto/historia-computacion/historia-computacion.page').then( m => m.HistoriaComputacionPage)
-  },
-  {
-    path: 'historia-creditos',
-    loadComponent: () => import('./pages/cierre/creditos/creditos.page').then( m => m.CreditosPage)
   },
   {
     path: 'impresion3d',
@@ -49,5 +41,9 @@ export const routes: Routes = [
   {
     path: 'creditos',
     loadComponent: () => import('./pages/cierre/creditos/creditos.page').then( m => m.CreditosPage)
+  },  {
+    path: 'register',
+    loadComponent: () => import('./auth/register/register.page').then( m => m.RegisterPage)
   },
+
 ];

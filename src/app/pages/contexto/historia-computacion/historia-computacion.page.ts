@@ -11,9 +11,6 @@ import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent } fr
   imports: [
     IonHeader,
     IonToolbar,
-    IonTitle,
-    IonButtons,
-    IonButton,
     IonContent,
     CommonModule,
     RouterModule // 👈 NECESARIO para routerLink en la navbar
