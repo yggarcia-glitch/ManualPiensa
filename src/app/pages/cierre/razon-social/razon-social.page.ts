@@ -13,55 +13,54 @@ import { RouterModule } from '@angular/router';
 })
 export class RazonSocialPage implements OnInit {
 
-  // 1. INFORMACIÓN DEL PROYECTO (Basado en el PDF)
+  // 1. INFORMACIÓN DEL PROYECTO
   proyecto = {
     titulo: 'ManualPiensa',
     subtitulo: 'Sistema Web Educativo de Ensamblaje Computacional',
-    // Resumen extraído del PDF
     resumen: 'El presente proyecto tiene como finalidad desarrollar una herramienta educativa que integre un simulador interactivo y un prototipo físico impreso en 3D. Buscamos solucionar el desconocimiento sobre la estructura interna de las computadoras mediante un aprendizaje práctico y seguro.',
     institucion: 'Universidad [Nombre de tu Uni]', 
     periodo: '2025 - 2026'
   };
 
-  // 2. PILARES METODOLÓGICOS (Con tus nuevos iconos PNG)
+  // 2. PILARES METODOLÓGICOS
   pilares = [
     { 
       titulo: 'Aprendizaje Seguro', 
       desc: 'Entorno de simulación libre de riesgos para los componentes.', 
-      icono: 'assets/icon/proteger.png' // Icono: proteger
+      icono: 'assets/icon/proteger.png'
     },
     { 
       titulo: 'Interactividad', 
       desc: 'Manipulación directa con retroalimentación visual y auditiva.', 
-      icono: 'assets/icon/interactivo.png' // Icono: interactivo
+      icono: 'assets/icon/interactivo.png'
     },
     { 
       titulo: 'Innovación', 
       desc: 'Integración de impresión 3D como recurso didáctico tangible.', 
-      icono: 'assets/icon/idea.png' // Icono: idea
+      icono: 'assets/icon/idea.png'
     }
   ];
 
-  // 3. COMPONENTES DEL SISTEMA (Basado en la Propuesta del PDF)
+  // 3. COMPONENTES DEL SISTEMA
   modulos = [
     { 
       nombre: 'Simulador Web', 
       desc: 'Guía visual paso a paso del orden correcto de montaje.', 
-      icono: 'desktop-outline' 
+      icono: 'assets/icon/simulacion.png' 
     },
     { 
       nombre: 'Prototipo Físico 3D', 
       desc: 'Modelo a escala para la práctica manipulativa real.', 
-      icono: 'cube-outline' 
+      icono: 'assets/icon/prototipo.png' 
     },
     { 
       nombre: 'Contexto Histórico', 
       desc: 'Información sobre la evolución de la computación.', 
-      icono: 'book-outline' 
+      icono: 'assets/icon/contexto.png' 
     }
   ];
 
-  // 4. EQUIPO DE DESARROLLO (Tus datos intactos)
+  // 4. EQUIPO DE DESARROLLO
   equipo = [
     {
       nombre: 'Yosef Garcia',
@@ -81,6 +80,5 @@ export class RazonSocialPage implements OnInit {
   ];
 
   constructor() { }
-
   ngOnInit() { }
 }

@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-componentes',
   templateUrl: './componentes.page.html',
   styleUrls: ['./componentes.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, RouterLink]
+  imports: [CommonModule, IonicModule, RouterLink, RouterModule]
 })
 export class ComponentesPage {
 

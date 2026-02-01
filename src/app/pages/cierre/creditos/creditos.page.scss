@@ -1,102 +1,167 @@
-/* ... (Mismos estilos de banner y generales que tenías antes) ... */
-:host { --background: #f8fafc; }
-ion-toolbar { --background: white; --color: #1e293b; }
-ion-title { font-weight: 800; font-size: 20px; color: #1e293b; }
-.bg-light { --background: #f8fafc; }
+/* --- CONFIGURACIÓN GENERAL --- */
+:host {
+  --background: #f8fafc;
+  display: block;
+}
+ion-content { --background: #f8fafc; }
 
+/* =========================================
+   1. NAVBAR COMPACTA & BANNER
+   ========================================= */
+ion-toolbar {
+  --background: transparent !important;
+  --border-style: none !important;
+  --min-height: auto !important;
+  padding-top: 10px !important;
+  padding-bottom: 5px !important;
+  display: flex !important;
+  width: 100% !important;
+  justify-content: center !important;
+}
+
+.navbar-pill-container {
+  background: linear-gradient(135deg, #00C9B7 0%, #009e91 100%);
+  display: inline-flex;
+  padding: 5px;
+  border-radius: 50px;
+  gap: 5px;
+  box-shadow: 0 8px 20px rgba(0, 201, 183, 0.4);
+  max-width: 95%;
+  flex-wrap: wrap; 
+  justify-content: center;
+}
+
+.pill-item {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 14px; 
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-transform: lowercase;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+.pill-item:hover { background: rgba(255, 255, 255, 0.2); color: white !important; }
+.pill-active { background: #ffffff !important; color: #008f82 !important; font-weight: 800 !important; transform: scale(1.05); }
+
+/* Banner */
 .header-banner {
   background: linear-gradient(135deg, #00C9B7 0%, #009e91 100%);
-  padding: 40px 20px 80px 20px; text-align: center; color: white;
-  border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;
+  padding: 20px 20px 60px 20px;
+  text-align: center;
+  color: white;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  margin-bottom: 20px;
 }
-.header-banner h1 { margin: 0; font-weight: 800; font-size: 24px; }
-.header-banner p { margin: 5px 0 0; opacity: 0.9; font-size: 14px; }
-.main-container { padding: 0 20px; margin-top: -60px; }
+.header-banner h1 { font-weight: 800; margin: 0 0 5px 0; font-size: 26px; }
+.header-banner p { margin: 0; font-size: 14px; opacity: 0.95; }
 
-/* ... (Estilos del Acordeón se mantienen igual) ... */
+/* Wrapper Principal */
+.main-content-wrapper {
+  padding: 0 20px 40px 20px;
+  margin-top: -45px;
+  position: relative;
+  z-index: 10;
+}
+
+/* =========================================
+   2. ESTILOS ESPECÍFICOS DE CRÉDITOS
+   ========================================= */
+
+/* Títulos de Sección */
+.mt-4 { margin-top: 30px; }
+.section-title { margin-bottom: 15px; }
+.section-title h3 { font-size: 14px; font-weight: 700; color: #64748b; text-transform: uppercase; margin: 0; letter-spacing: 0.5px; }
+.divider { width: 30px; height: 3px; background: #00C9B7; border-radius: 2px; margin-top: 4px; }
+.divider.purple { background: #a855f7; }
+
+/* --- ACORDEÓN (Modelos 3D) --- */
 ion-accordion-group.card-accordion { margin-bottom: 12px; }
 ion-accordion {
-  background: white; border-radius: 16px; overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #f1f5f9;
+  background: white; 
+  border-radius: 20px; 
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+  border: 1px solid #f1f5f9;
 }
-ion-accordion.teal { border-left: 4px solid #00C9B7; }
-ion-accordion.blue { border-left: 4px solid #3b82f6; }
-ion-accordion.dark { border-left: 4px solid #1e293b; }
+/* Bordes de color según tipo */
+ion-accordion.teal { border-left: 5px solid #00C9B7; }
+ion-accordion.blue { border-left: 5px solid #3b82f6; }
+ion-accordion.dark { border-left: 5px solid #1e293b; }
+
 ion-item { --background: white; --padding-start: 0; --inner-padding-end: 10px; }
+
 .accordion-header-content { display: flex; align-items: center; gap: 12px; padding: 12px 10px; width: 100%; }
-.emoji-wrapper { width: 45px; height: 45px; background: #f8fafc; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-left: 10px; }
-.emoji-wrapper img { width: 30px; height: 30px; object-fit: contain; }
+.emoji-wrapper { width: 45px; height: 45px; background: #f8fafc; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-left: 10px; }
+.emoji-wrapper img { width: 28px; height: 28px; object-fit: contain; }
+
 .header-text h4 { margin: 4px 0 0 0; font-size: 15px; font-weight: 700; color: #1e293b; }
-.badge-level { font-size: 9px; text-transform: uppercase; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
+.badge-level { font-size: 9px; text-transform: uppercase; font-weight: 800; padding: 3px 8px; border-radius: 6px; letter-spacing: 0.5px; }
 .badge-level.teal { background: #ccfbf1; color: #0f766e; }
 .badge-level.blue { background: #eff6ff; color: #1e40af; }
 .badge-level.dark { background: #f1f5f9; color: #334155; }
-.accordion-content { padding: 0 20px 20px 20px; background: white; border-top: 1px solid #f1f5f9; }
-.desc { font-size: 13px; color: #475569; line-height: 1.5; margin: 15px 0 10px 0; }
-.meta-row { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 11px; font-weight: 600; color: #94a3b8; }
-.cta-text { text-align: center; font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; animation: bounce 2s infinite; }
-.download-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 13px; color: white; }
-.download-btn.teal { background: #00C9B7; }
-.download-btn.blue { background: #3b82f6; }
-.download-btn.dark { background: #1e293b; }
 
-/* --- RECURSOS (Con Imágenes PNG) --- */
+.accordion-content { padding: 0 20px 20px 20px; background: white; border-top: 1px dashed #f1f5f9; }
+.desc { font-size: 13px; color: #475569; line-height: 1.6; margin: 15px 0 10px 0; }
+.meta-row { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 11px; font-weight: 600; color: #94a3b8; }
+.cta-text { text-align: center; font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+
+.download-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 13px; color: white; transition: transform 0.2s; }
+.download-btn:active { transform: scale(0.98); }
+.download-btn.teal { background: #00C9B7; box-shadow: 0 4px 10px rgba(0, 201, 183, 0.3); }
+.download-btn.blue { background: #3b82f6; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); }
+.download-btn.dark { background: #1e293b; box-shadow: 0 4px 10px rgba(30, 41, 59, 0.3); }
+
+/* --- RECURSOS (Tarjetas Pequeñas) --- */
 .resource-card {
   display: flex; align-items: center; gap: 12px; background: white; padding: 12px;
-  border-radius: 12px; border: 1px solid #e2e8f0; text-decoration: none; color: #1e293b;
-  margin-bottom: 8px; transition: transform 0.1s;
+  border-radius: 16px; border: 1px solid #e2e8f0; text-decoration: none; color: #1e293b;
+  margin-bottom: 10px; transition: transform 0.2s, box-shadow 0.2s;
 }
-.resource-card:active { transform: scale(0.98); }
+.resource-card:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 
 .res-icon-img {
-  width: 40px; height: 40px; padding: 5px; background: #f8fafc; border-radius: 8px;
+  width: 40px; height: 40px; padding: 5px; background: #f8fafc; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
 }
 .res-icon-img img { width: 100%; height: 100%; object-fit: contain; }
 
 .res-info { flex-grow: 1; display: flex; flex-direction: column; }
-.res-info strong { font-size: 13px; }
-.res-info span { font-size: 10px; color: #94a3b8; }
+.res-info strong { font-size: 13px; font-weight: 700; }
+.res-info span { font-size: 10px; color: #94a3b8; font-weight: 500; }
 .arrow { color: #cbd5e1; font-size: 16px; }
 
-/* --- TECNOLOGÍA (CHIPS) --- */
-.tech-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+/* --- TECH CHIPS --- */
+.tech-grid { display: flex; flex-wrap: wrap; gap: 10px; }
 .tech-chip {
-  background: white; border: 1px solid #e2e8f0; padding: 8px 14px;
-  border-radius: 20px; font-size: 12px; color: #475569; text-decoration: none;
-  font-weight: 600; display: flex; align-items: center; gap: 6px;
+  background: white; border: 1px solid #e2e8f0; padding: 8px 16px;
+  border-radius: 30px; font-size: 12px; color: #475569; text-decoration: none;
+  font-weight: 600; display: flex; align-items: center; gap: 8px;
+  transition: all 0.2s;
 }
+.tech-chip:hover { border-color: #00C9B7; color: #00C9B7; background: #f0fdfa; }
 .tech-chip ion-icon { font-size: 16px; }
 
-/* --- IA CARDS (Con Imágenes PNG) --- */
-.ai-container { display: flex; flex-direction: column; gap: 10px; }
+/* --- AI CARDS --- */
+.ai-container { display: flex; flex-direction: column; gap: 12px; }
 .ai-card {
-  background: white; border: 1px solid #f3e8ff; border-radius: 16px; padding: 15px;
-  display: flex; align-items: flex-start; gap: 12px; box-shadow: 0 4px 10px rgba(147, 51, 234, 0.03);
-  text-decoration: none; color: inherit; transition: transform 0.1s;
+  background: white; border: 1px solid #f3e8ff; border-radius: 20px; padding: 16px;
+  display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 10px rgba(147, 51, 234, 0.03);
+  text-decoration: none; color: inherit; transition: transform 0.2s;
 }
-.ai-card:active { transform: scale(0.98); }
+.ai-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(147, 51, 234, 0.1); }
 
 .ai-img-wrapper {
-  width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0;
+  width: 45px; height: 45px; border-radius: 12px; overflow: hidden; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center; background: #faf5ff;
 }
 .ai-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
 .ai-content strong { display: block; font-size: 14px; color: #1e293b; margin-bottom: 2px; }
-.ai-content p { font-size: 12px; color: #64748b; margin: 0; line-height: 1.4; }
-
-/* GENERALES */
-.mt-4 { margin-top: 30px; }
-.section-title { margin-bottom: 12px; }
-.section-title h3 { font-size: 14px; font-weight: 700; color: #64748b; text-transform: uppercase; margin: 0; }
-.divider { width: 30px; height: 3px; background: #00C9B7; border-radius: 2px; margin-top: 4px; }
-.divider.purple { background: #a855f7; }
+.ai-content p { font-size: 12px; color: #64748b; margin: 0; }
 
 .footer-note { text-align: center; margin: 40px 0; color: #cbd5e1; font-size: 11px; }
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-  40% {transform: translateY(-3px);}
-  60% {transform: translateY(-2px);}
-}

@@ -1,21 +1,34 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Componentes</ion-title>
+    
+    <div style="width: 100%; display: flex; justify-content: center;">
+      
+        <div class="navbar-pill-container">
+          
+          <a routerLink="/componentes" routerLinkActive="pill-active" [routerLinkActiveOptions]="{ exact: true }" class="pill-item">
+            componentes
+          </a>
 
-    <ion-buttons slot="end">
-      <ion-button routerLink="/home">
-        <img src="assets/icon/home.png" width="32" />
-      </ion-button>
-      <ion-button routerLink="/componentes">
-        <img src="assets/icon/componentes.png" width="32" />
-      </ion-button>
-      <ion-button routerLink="/creditos">
-        <img src="assets/icon/creditos.png" width="32" />
-      </ion-button>
-      <ion-button routerLink="/impresion3d">
-        <img src="assets/icon/3d.png" width="32" />
-      </ion-button>
-    </ion-buttons>
+          <a routerLink="/historia-computacion" routerLinkActive="pill-active" class="pill-item">
+            historia
+          </a>
+
+          <a routerLink="/impresion3d" routerLinkActive="pill-active" class="pill-item">
+            impresión 3d
+          </a>
+
+          <a routerLink="/razon-social" routerLinkActive="pill-active" class="pill-item">
+            proyecto
+          </a>
+
+          <a routerLink="/creditos" routerLinkActive="pill-active" class="pill-item">
+            créditos
+          </a>
+
+        </div>
+
+    </div>
+
   </ion-toolbar>
 </ion-header>
 

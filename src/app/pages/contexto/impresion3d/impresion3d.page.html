@@ -1,56 +1,50 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>{{ tituloPagina }}</ion-title>
-      <ion-buttons slot="end">
-
-      <ion-button routerLink="/home">
-        <img src="assets/icon/home.png" width="32" />
-      </ion-button>
-
-      <ion-button routerLink="/componentes">
-        <img src="assets/icon/componentes.png" width="32" />
-      </ion-button>
-
-      <ion-button routerLink="/creditos">
-        <img src="assets/icon/creditos.png" width="32" />
-      </ion-button>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div style="width: 100%; display: flex; justify-content: center;">
       
-      <ion-button routerLink="/historia-computacion">
-        <img src="assets/icon/computa.png" width="32" />
-      </ion-button>
+      <div class="navbar-pill-container">
+        <a routerLink="/componentes" routerLinkActive="pill-active" class="pill-item">componentes</a>
+        <a routerLink="/historia-computacion" routerLinkActive="pill-active" class="pill-item">historia</a>
+        <a routerLink="/impresion3d" routerLinkActive="pill-active" [routerLinkActiveOptions]="{ exact: true }" class="pill-item">impresión 3d</a>
+        <a routerLink="/razon-social" routerLinkActive="pill-active" class="pill-item">proyecto</a>
+        <a routerLink="/creditos" routerLinkActive="pill-active" class="pill-item">créditos</a>
+      </div>
 
-    </ion-buttons>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
 
-  <ion-card>
-    <ion-card-content>
-      <div #threeContainer class="three-container"></div>
-    </ion-card-content>
-  </ion-card>
+  <div class="header-banner">
+    <h1>Evolución Impresión 3D</h1>
+    <p>Explora la historia y el modelo interactivo</p>
+  </div>
 
-  <section class="cards-grid">
+  <div class="main-content-wrapper">
 
-    <ion-card class="evo-card" *ngFor="let item of evolucionImpresion3D">
-      
-      <div class="card-img">
-        <img [src]="item.imagen" [alt]="item.titulo" />
+    <div class="split-layout">
+
+      <div class="left-column">
+        <div #threeContainer class="three-container"></div>
       </div>
 
-      <ion-card-header>
-        <ion-card-title>
-          {{ item.anio }} – {{ item.titulo }}
-        </ion-card-title>
-      </ion-card-header>
+      <section class="cards-grid">
+        
+        <div class="evo-card" *ngFor="let item of evolucionImpresion3D">
+          <div class="card-img">
+            <img [src]="item.imagen" [alt]="item.titulo" />
+          </div>
+          <ion-card-header>
+            <ion-card-title>{{ item.anio }} – {{ item.titulo }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{ item.descripcion }}
+          </ion-card-content>
+        </div>
 
-      <ion-card-content>
-        {{ item.descripcion }}
-      </ion-card-content>
+      </section>
 
-    </ion-card>
-
-  </section>
+    </div> </div>
 
 </ion-content>

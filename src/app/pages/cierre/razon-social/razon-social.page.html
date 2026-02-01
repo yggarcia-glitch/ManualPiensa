@@ -1,27 +1,35 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Sobre el Proyecto</ion-title>
-    
-    <ion-buttons slot="end" class="top-icons">
-      <ion-button routerLink="/home"><img src="assets/icon/home.png" width="30" /></ion-button>
-      <ion-button routerLink="/componentes"><img src="assets/icon/componentes.png" width="30" /></ion-button>
-      <ion-button disabled="true" style="opacity: 0.5;"><img src="assets/icon/razon.png" width="30" /></ion-button>
-    </ion-buttons>
+    <div style="width: 100%; display: flex; justify-content: center;">
+      
+      <div class="navbar-pill-container">
+        <a routerLink="/componentes" routerLinkActive="pill-active" class="pill-item">componentes</a>
+        <a routerLink="/historia-computacion" routerLinkActive="pill-active" class="pill-item">historia</a>
+        <a routerLink="/impresion3d" routerLinkActive="pill-active" class="pill-item">impresión 3d</a>
+        
+        <a routerLink="/razon-social" routerLinkActive="pill-active" [routerLinkActiveOptions]="{ exact: true }" class="pill-item">
+          proyecto
+        </a>
+
+        <a routerLink="/creditos" routerLinkActive="pill-active" class="pill-item">créditos</a>
+      </div>
+
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-light">
+<ion-content>
 
   <div class="header-banner">
     <h1>{{ proyecto.titulo }}</h1>
     <p>{{ proyecto.subtitulo }}</p>
   </div>
 
-  <div class="main-container">
+  <div class="main-content-wrapper">
 
     <div class="info-card purpose-card">
       <div class="card-icon-top">
-        <ion-icon name="school-outline"></ion-icon>
+        <img src="assets/icon/meta.png" alt="Objetivo General" />
       </div>
       <h2>Objetivo General</h2>
       <p>{{ proyecto.resumen }}</p>
@@ -57,7 +65,9 @@
 
     <div class="services-list">
       <div class="service-item" *ngFor="let mod of modulos">
-        <div class="serv-icon"><ion-icon [name]="mod.icono"></ion-icon></div>
+        <div class="serv-icon">
+         <img [src]="mod.icono" />
+        </div>
         <div class="serv-info">
           <strong>{{ mod.nombre }}</strong>
           <p>{{ mod.desc }}</p>
@@ -73,7 +83,6 @@
     <ion-grid class="ion-no-padding">
       <ion-row>
         <ion-col size="12" size-md="4" *ngFor="let miembro of equipo">
-          
           <div class="member-card">
             <div class="avatar-wrapper">
               <img [src]="miembro.foto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
@@ -84,7 +93,6 @@
               <span class="role">{{ miembro.rol }}</span>
             </div>
           </div>
-
         </ion-col>
       </ion-row>
     </ion-grid>

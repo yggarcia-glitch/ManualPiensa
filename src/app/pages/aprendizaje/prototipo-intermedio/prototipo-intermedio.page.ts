@@ -123,7 +123,7 @@ export class PrototipoIntermedioPage implements AfterViewInit, OnDestroy {
       descripcion: 'Retira las latas traseras del gabinete que coincidan con el puerto PCIe x16 (el más largo y cercano al CPU). Inserta la gráfica y atorníllala al chasis del gabinete.',
       detalleTecnico: 'Bus: PCI Express x16',
       nota: 'No olvides conectar los cables de alimentación PCIe que vienen de la fuente directo a la gráfica.',
-      color: 'primary'
+      color: 'medium'
     },
     {
       fase: 'Final',

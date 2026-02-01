@@ -92,3 +92,4 @@ export class HistoriaComputacionPage {
     evento.abierto = !evento.abierto;
   }
 }
+

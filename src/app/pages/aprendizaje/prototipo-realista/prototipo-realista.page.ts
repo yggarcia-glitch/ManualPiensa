@@ -22,7 +22,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
   // --- GUÍA PRO (Mismo contenido, ahora en estilo claro) ---
   pasos = [
     {
-      fase: '01 PREP',
+      fase: 'PREPARACION',
       titulo: 'Banco de Pruebas',
       descripcion: 'Antes de montar en el gabinete, colocamos la placa madre sobre su caja de cartón. Esto nos permite probar los componentes principales (CPU, RAM, GPU, PSU) fuera del chasis y detectar fallos de fábrica antes de atornillar todo.',
       herramienta: 'Superficie No Conductiva',
@@ -30,7 +30,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'Conecta solo el cable de 24 pines y el de CPU para hacer un "POST test" rápido puenteando los pines de encendido.'
     },
     {
-      fase: '02 CPU',
+      fase: 'CPU',
       titulo: 'Instalación del Procesador',
       descripcion: 'Abre el retenedor del zócalo. Alinea el triángulo dorado. Si usas Intel 12th/13th/14th Gen, considera usar un "Contact Frame" para mejorar la temperatura en 5-10°C, reemplazando el mecanismo de carga original (ILM).',
       herramienta: 'Llave Torx (si usas Contact Frame)',
@@ -38,7 +38,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'No fuerces nada. Si no entra suave, revisa la alineación. Guarda la tapa plástica negra para garantía.'
     },
     {
-      fase: '03 STORAGE',
+      fase: 'STORAGE',
       titulo: 'NVMe Gen 4.0 con Disipador',
       descripcion: 'Retira el disipador térmico (Heatsink) de la placa madre. Quita el plástico protector azul/transparente del pad térmico. Instala el SSD M.2 y vuelve a atornillar el disipador encima presionando firmemente.',
       herramienta: 'Destornillador Phillips #0',
@@ -46,7 +46,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'Usa el slot M.2 superior (más cercano al CPU) para conexión directa a las líneas PCIe del procesador (menor latencia).'
     },
     {
-      fase: '04 MEMORY',
+      fase: 'MEMORY',
       titulo: 'RAM DDR5 Dual Channel',
       descripcion: 'Consulta el manual para la prioridad de slots (generalmente A2 y B2). Empuja los módulos hasta escuchar un clic firme. En DDR5, la muesca está casi al centro pero no exactamente; fíjate bien en la orientación.',
       herramienta: 'Manos limpias',
@@ -54,7 +54,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'Asegúrate de activar el perfil XMP 3.0 o EXPO en la BIOS más tarde para alcanzar la velocidad anunciada (ej: 6000MHz).'
     },
     {
-      fase: '05 AIO PREP',
+      fase: 'AIO PREP',
       titulo: 'Backplate del AIO',
       descripcion: 'Prepara la placa trasera (Backplate) para el bloque de refrigeración líquida. Ajusta los pernos según tu zócalo (LGA1700 o AM5) y colócala por detrás de la placa madre.',
       herramienta: 'Kit de Montaje AIO',
@@ -62,7 +62,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'Asegúrate de que el backplate quede firme pero no apretado al máximo hasta que pongas el bloque.'
     },
     {
-      fase: '06 CASE',
+      fase: 'CASE',
       titulo: 'Montaje de Placa Madre',
       descripcion: 'Instala el I/O Shield si no es integrado. Coloca la placa dentro del gabinete alineando con los standoffs. Atornilla desde el centro hacia afuera para evitar tensión en el PCB.',
       herramienta: 'Destornillador Phillips #2',
@@ -70,7 +70,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'Si tu gabinete tiene un poste central de guía, úsalo para centrar la placa antes de poner el primer tornillo.'
     },
     {
-      fase: '07 PSU',
+      fase: 'PSU',
       titulo: 'Fuente Modular: Cables',
       descripcion: 'En una fuente modular, conecta SOLO los cables que vas a usar: 1x 24-Pin (Placa), 2x 8-Pin (CPU EPS), y los necesarios para la GPU (12VHPWR o PCIe). Conéctalos primero a la fuente y luego introduce la fuente al gabinete.',
       herramienta: 'Bridas / Precintos',
@@ -78,7 +78,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'El cable de CPU (4+4) suele dividirse en dos mitades simétricas. El de GPU (6+2) tiene una pieza pequeña colgando.'
     },
     {
-      fase: '08 AIO RAD',
+      fase: 'AIO RAD',
       titulo: 'Radiador: Orientación',
       descripcion: 'Instala el radiador de 240mm/360mm. Posición ideal: Parte SUPERIOR expulsando aire (Exhaust). Si lo pones al FRENTE, asegúrate de que los tubos queden abajo o que la bomba esté más baja que el punto más alto del radiador.',
       herramienta: 'Tornillos largos + Arandelas',
@@ -86,7 +86,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'Configuración "Push": Ventiladores empujando aire a través del radiador hacia afuera.'
     },
     {
-      fase: '09 THERMAL',
+      fase: 'THERMAL',
       titulo: 'Pasta Térmica: Aplicación',
       descripcion: 'Limpia la superficie del CPU con alcohol isopropílico. Aplica pasta térmica de alta calidad (ej: MX-6 o Kryonaut). Para CPUs modernos rectangulares (LGA1700), usa el patrón de "X" o 5 puntos.',
       herramienta: 'Pasta Térmica High-End',
@@ -94,7 +94,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'No pongas demasiada; una capa fina y uniforme bajo presión es lo ideal. El exceso no daña, pero ensucia.'
     },
     {
-      fase: '10 AIO BLOCK',
+      fase: 'AIO BLOCK',
       titulo: 'Montaje del Bloque AIO',
       descripcion: '¡QUITA EL PLÁSTICO PROTECTOR DE LA BASE DE COBRE! Coloca el bloque sobre el CPU. Atornilla las tuercas de mariposa en patrón de cruz (esquina superior izq -> inferior der) poco a poco para aplicar presión pareja.',
       herramienta: 'Dedos / Destornillador',
@@ -102,7 +102,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'Olvidar el plástico "Remove Before Flight" es el error #1 en ensambles profesionales.'
     },
     {
-      fase: '11 AIO WIRING',
+      fase: 'AIO WIRING',
       titulo: 'Conexión de Bomba y Fans',
       descripcion: 'Conecta el cable de la bomba al cabezal "AIO_PUMP" o "W_PUMP" de la placa (corre al 100% siempre). Conecta los ventiladores del radiador al "CPU_FAN" usando el cable divisor (splitter) incluido.',
       herramienta: 'Manual de Placa',
@@ -110,7 +110,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'Si conectas la bomba en CPU_FAN, entra a la BIOS y configura ese puerto a "Full Speed" (DC Mode) para evitar que la bomba varíe su velocidad.'
     },
     {
-      fase: '12 FRONT I/O',
+      fase: 'FRONT I/O',
       titulo: 'Panel Frontal Unificado',
       descripcion: 'Conecta los cables del chasis: USB-C, USB 3.0 (conector azul grande) y Audio HD (esquina inferior izq). Conecta los pines de Power/Reset/LED con paciencia o usa el adaptador "Q-Connector" si tu placa lo trae.',
       herramienta: 'Pinzas de punta fina',
@@ -118,7 +118,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'El triángulo pequeño en los conectores de plástico negro indica el polo POSITIVO (+).'
     },
     {
-      fase: '13 GPU',
+      fase: 'GPU',
       titulo: 'La Bestia Gráfica',
       descripcion: 'Abre el seguro del puerto PCIe x16. Inserta la GPU vertical u horizontalmente. Usa 2 o 3 cables PCIe INDEPENDIENTES desde la fuente, evita usar el conector "pigtail" (el que cuelga del mismo cable) para cargas altas.',
       herramienta: 'Soporte Anti-Sag',
@@ -126,7 +126,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'Si usas el nuevo conector 12VHPWR (Nvidia serie 40), asegúrate de que esté insertado A FONDO hasta no ver ninguna línea divisoria.'
     },
     {
-      fase: '14 MGMT',
+      fase: 'MGMT',
       titulo: 'Gestión de Cables Pro',
       descripcion: 'Usa los canales traseros del gabinete. Agrupa cables con velcros. Deja holgura en los cables del AIO para no tensar los tubos. El objetivo es que el flujo de aire frontal no tenga obstrucciones.',
       herramienta: 'Velcros / Precintos',
@@ -134,7 +134,7 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
       tip: 'Un buen cable management no solo es estética; facilita el mantenimiento y mejora la temperatura.'
     },
     {
-      fase: '15 FINAL',
+      fase: 'FINAL',
       titulo: 'Primer Inicio (POST)',
       descripcion: 'Conecta monitor a la GPU (no a la placa). Enciende la fuente (switch I). Presiona Power. Espera... el primer arranque con DDR5 puede tardar hasta 2 minutos en "Memory Training".',
       herramienta: 'Paciencia',

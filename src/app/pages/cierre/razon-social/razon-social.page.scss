@@ -1,32 +1,98 @@
-/* CONFIGURACIÓN GENERAL */
-:host { --background: #f8fafc; }
-ion-toolbar { --background: white; --color: #1e293b; }
-ion-title { font-weight: 800; font-size: 20px; color: #1e293b; }
-.bg-light { --background: #f8fafc; }
+/* --- CONFIGURACIÓN GENERAL --- */
+:host {
+  --background: #f8fafc;
+  display: block;
+}
+ion-content { --background: #f8fafc; }
 
-/* BANNER */
+/* =========================================
+   1. NAVBAR COMPACTA & BANNER
+   ========================================= */
+ion-toolbar {
+  --background: transparent !important;
+  --border-style: none !important;
+  --min-height: auto !important;
+  padding-top: 10px !important;
+  padding-bottom: 5px !important;
+  display: flex !important;
+  width: 100% !important;
+  justify-content: center !important;
+}
+
+.navbar-pill-container {
+  background: linear-gradient(135deg, #00C9B7 0%, #009e91 100%);
+  display: inline-flex;
+  padding: 5px;
+  border-radius: 50px;
+  gap: 5px;
+  box-shadow: 0 8px 20px rgba(0, 201, 183, 0.4);
+  max-width: 95%;
+  flex-wrap: wrap; 
+  justify-content: center;
+}
+
+.pill-item {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 14px; 
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-transform: lowercase;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+.pill-item:hover { background: rgba(255, 255, 255, 0.2); color: white !important; }
+.pill-active { background: #ffffff !important; color: #008f82 !important; font-weight: 800 !important; transform: scale(1.05); }
+
+/* Banner */
 .header-banner {
   background: linear-gradient(135deg, #00C9B7 0%, #009e91 100%);
-  padding: 40px 20px 80px 20px; text-align: center; color: white;
-  border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;
+  padding: 20px 20px 60px 20px;
+  text-align: center;
+  color: white;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  margin-bottom: 20px;
 }
-.header-banner h1 { margin: 0; font-weight: 800; font-size: 24px; }
-.header-banner p { margin: 8px 0 0; opacity: 0.95; font-size: 14px; font-weight: 500; }
+.header-banner h1 { font-weight: 800; margin: 0 0 5px 0; font-size: 26px; }
+.header-banner p { margin: 0; font-size: 14px; opacity: 0.95; }
 
-.main-container { padding: 0 20px; margin-top: -60px; }
+/* Wrapper Principal */
+.main-content-wrapper {
+  padding: 0 20px 40px 20px;
+  margin-top: -45px;
+  position: relative;
+  z-index: 10;
+}
+
+/* =========================================
+   2. ESTILOS ESPECÍFICOS DEL PROYECTO
+   ========================================= */
 
 /* --- TARJETA OBJETIVO --- */
 .info-card {
   background: white; border-radius: 20px; padding: 30px 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1px solid #f1f5f9;
-  text-align: center; position: relative;
+  text-align: center; position: relative; margin-bottom: 30px;
 }
 
 .card-icon-top {
-  width: 60px; height: 60px; background: #f0fdfa; color: #00C9B7;
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 28px; margin: 0 auto 15px auto;
+  width: 65px; height: 65px; background: #f0fdfa;
+  border-radius: 50%; 
+  display: flex; align-items: center; justify-content: center; /* Centrado perfecto */
+  margin: 0 auto 15px auto;
   box-shadow: 0 4px 10px rgba(0, 201, 183, 0.15);
+  padding: 12px; 
+}
+
+/* ESTILO PARA LA IMAGEN (meta.png) */
+.card-icon-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .info-card h2 { margin: 0 0 10px 0; font-size: 18px; font-weight: 800; color: #1e293b; }
@@ -45,7 +111,6 @@ ion-title { font-weight: 800; font-size: 20px; color: #1e293b; }
 }
 .value-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
-/* Contenedor para tus iconos PNG */
 .val-icon-img {
   width: 55px; height: 55px; margin: 0 auto 15px auto;
   display: flex; align-items: center; justify-content: center;
@@ -56,17 +121,36 @@ ion-title { font-weight: 800; font-size: 20px; color: #1e293b; }
 .value-card h3 { margin: 0; font-size: 15px; font-weight: 700; color: #1e293b; }
 .value-card p { margin: 6px 0 0 0; font-size: 12px; color: #64748b; line-height: 1.4; }
 
-/* --- LISTA DE MÓDULOS --- */
+/* --- LISTA DE MÓDULOS (AQUÍ ESTÁ EL CAMBIO) --- */
 .services-list {
-  background: white; border-radius: 16px; padding: 5px;
+  background: white; border-radius: 16px; padding: 10px;
   border: 1px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 .service-item {
-  display: flex; align-items: flex-start; padding: 15px; border-bottom: 1px solid #f1f5f9;
+  display: flex; align-items: center; /* Alineación vertical centrada */
+  padding: 15px; border-bottom: 1px solid #f1f5f9;
 }
 .service-item:last-child { border-bottom: none; }
 
-.serv-icon { font-size: 22px; color: #009e91; margin-right: 15px; margin-top: 2px; }
+/* ESTILO NUEVO PARA ICONOS TIPO IMAGEN */
+.serv-icon {
+  width: 50px;       /* Tamaño fijo del contenedor */
+  height: 50px;
+  background: #f0fdfa; /* Fondo turquesa clarito */
+  border-radius: 12px; /* Bordes redondeados */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  flex-shrink: 0;     /* Evita deformación */
+}
+
+.serv-icon img {
+  width: 28px;       /* Tamaño del icono */
+  height: 28px;
+  object-fit: contain; 
+}
+
 .serv-info strong { display: block; font-size: 14px; color: #1e293b; margin-bottom: 2px; }
 .serv-info p { margin: 0; font-size: 12px; color: #64748b; }
 
@@ -94,7 +178,7 @@ ion-title { font-weight: 800; font-size: 20px; color: #1e293b; }
 /* GENERALES */
 .mt-4 { margin-top: 30px; }
 .section-title { margin-bottom: 20px; text-align: center; }
-.section-title h3 { margin: 0; font-size: 15px; font-weight: 700; color: #475569; text-transform: uppercase; }
+.section-title h3 { margin: 0; font-size: 15px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; }
 .divider { width: 40px; height: 3px; background: #00C9B7; border-radius: 2px; margin: 8px auto 0 auto; }
 
 .footer-note { text-align: center; margin: 40px 0 20px 0; color: #cbd5e1; font-size: 11px; }

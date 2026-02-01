@@ -1,22 +1,30 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Créditos</ion-title>
-    <ion-buttons slot="end" class="top-icons">
-      <ion-button routerLink="/home"><img src="assets/icon/home.png" width="30" /></ion-button>
-      <ion-button routerLink="/componentes"><img src="assets/icon/componentes.png" width="30" /></ion-button>
-      <ion-button routerLink="/razon-social"><img src="assets/icon/razon.png" width="30" /></ion-button>
-    </ion-buttons>
+    <div style="width: 100%; display: flex; justify-content: center;">
+      
+      <div class="navbar-pill-container">
+        <a routerLink="/componentes" routerLinkActive="pill-active" class="pill-item">componentes</a>
+        <a routerLink="/historia-computacion" routerLinkActive="pill-active" class="pill-item">historia</a>
+        <a routerLink="/impresion3d" routerLinkActive="pill-active" class="pill-item">impresión 3d</a>
+        <a routerLink="/razon-social" routerLinkActive="pill-active" class="pill-item">proyecto</a>
+        
+        <a routerLink="/creditos" routerLinkActive="pill-active" [routerLinkActiveOptions]="{ exact: true }" class="pill-item">
+          créditos
+        </a>
+      </div>
+
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-light">
+<ion-content>
 
   <div class="header-banner">
     <h1>Fuentes y Recursos</h1>
     <p>Reconocimiento a creadores y herramientas</p>
   </div>
 
-  <div class="main-container">
+  <div class="main-content-wrapper">
 
     <div class="section-title">
       <h3>Modelos 3D (Descargas)</h3>
@@ -26,13 +34,12 @@
     <ion-grid class="ion-no-padding">
       <ion-row>
         <ion-col size="12" size-md="6" *ngFor="let item of modelos3D">
+          
           <ion-accordion-group class="card-accordion">
-            <ion-accordion value="item" [ngClass]="item.color">
-              
-              <ion-item slot="header" lines="none">
+            <ion-accordion [value]="item.titulo" [ngClass]="item.color"> <ion-item slot="header" lines="none">
                 <div class="accordion-header-content">
                   <div class="emoji-wrapper">
-                    <img [src]="item.icono" />
+                    <img [src]="item.icono" alt="icon" />
                   </div>
                   <div class="header-text">
                     <span class="badge-level" [ngClass]="item.color">{{ item.titulo }}</span>
@@ -48,7 +55,7 @@
                   <span class="source">Fuente: MakerWorld</span>
                 </div>
                 
-                <p class="cta-text">Presione para llevar a la página de descarga <ion-icon name="arrow-down"></ion-icon></p>
+                <p class="cta-text">Presione para descargar <ion-icon name="arrow-down"></ion-icon></p>
 
                 <a [href]="item.url" target="_blank" class="download-btn" [ngClass]="item.color">
                   <span>Descargar STL</span>
@@ -58,6 +65,7 @@
 
             </ion-accordion>
           </ion-accordion-group>
+
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -97,7 +105,7 @@
     </div>
 
     <div class="section-title mt-4">
-      <h3>Asistencia Inteligencia Artificial</h3>
+      <h3>Asistencia IA</h3>
       <div class="divider purple"></div>
     </div>
 

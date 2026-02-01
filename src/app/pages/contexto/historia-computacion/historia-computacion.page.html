@@ -1,59 +1,67 @@
-<ion-header>
-  <ion-toolbar class="navbar">
-    <ion-title>Historia de la Computación</ion-title>
-
-    <ion-buttons slot="end">
-
-      <ion-button routerLink="/home">
-        <img src="assets/icon/home.png" width="32" />
-      </ion-button>
-
-      <ion-button routerLink="/componentes">
-        <img src="assets/icon/componentes.png" width="32" />
-      </ion-button>
-
-      <ion-button routerLink="/creditos">
-        <img src="assets/icon/creditos.png" width="32" />
-      </ion-button>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div style="width: 100%; display: flex; justify-content: center;">
       
-      <ion-button routerLink="/impresion3d">
-        <img src="assets/icon/3d.png" width="32" />
-      </ion-button>
+      <div class="navbar-pill-container">
+        <a routerLink="/componentes" routerLinkActive="pill-active" class="pill-item">componentes</a>
+        
+        <a routerLink="/historia-computacion" routerLinkActive="pill-active" [routerLinkActiveOptions]="{ exact: true }" class="pill-item">
+          historia
+        </a>
 
-    </ion-buttons>
+        <a routerLink="/impresion3d" routerLinkActive="pill-active" class="pill-item">impresión 3d</a>
+        <a routerLink="/razon-social" routerLinkActive="pill-active" class="pill-item">proyecto</a>
+        <a routerLink="/creditos" routerLinkActive="pill-active" class="pill-item">créditos</a>
+      </div>
+
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="fondo">
+<ion-content>
 
-  <div class="timeline">
+  <div class="header-banner">
+    <h1>Historia de la Computación</h1>
+    <p>Toca los hitos para ver los detalles</p>
+  </div>
 
-    <div class="evento" *ngFor="let evento of eventos">
+  <div class="main-content-wrapper">
+
+    <div class="timeline-container">
       
-      <div class="linea"></div>
+      <div class="timeline-line"></div>
 
-      <div class="punto"></div>
-
-      <div class="tarjeta">
+      <div class="timeline-item" *ngFor="let item of eventos">
         
- 
-      <img [src]="evento.imagen" alt="{{ evento.titulo }}">
+        <div class="timeline-dot" [class.dot-active]="item.abierto"></div>
 
+        <div class="timeline-card" (click)="toggleEvento(item)" [class.card-active]="item.abierto">
+          
+          <div class="card-img" *ngIf="item.imagen">
+            <img [src]="item.imagen" [alt]="item.titulo" />
+          </div>
 
-        <h2>{{ evento.titulo }}</h2>
-        <span class="fecha">{{ evento.fecha }}</span>
+          <div class="card-content">
+            <span class="date-badge">{{ item.fecha }}</span>
+            <h3>{{ item.titulo }}</h3>
+            
+            <p class="summary-text">{{ item.resumen }}</p>
 
-        <p class="resumen">{{ evento.resumen }}</p>
+            <div class="detail-text" *ngIf="item.abierto">
+              <p>{{ item.detalle }}</p>
+            </div>
 
-        <div *ngIf="evento.abierto" class="detalle">
-          <p>{{ evento.detalle }}</p>
+            <div class="toggle-indicator">
+              <span>{{ item.abierto ? 'Leer menos' : 'Leer más' }}</span>
+              <span style="font-size: 10px; margin-left: 5px;">{{ item.abierto ? '▲' : '▼' }}</span>
+            </div>
+
+          </div>
+          
         </div>
 
-        <button (click)="toggleEvento(evento)">
-          {{ evento.abierto ? 'Ver menos ▲' : 'Ver más ▼' }}
-        </button>
-
       </div>
+
     </div>
 
   </div>

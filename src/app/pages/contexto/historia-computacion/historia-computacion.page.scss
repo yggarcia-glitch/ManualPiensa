@@ -1,107 +1,237 @@
-.fondo {
-  --background: #ffffff;
-  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+/* --- CONFIGURACIÓN GENERAL --- */
+:host {
+  --background: #f8fafc;
+  display: block;
+}
+ion-content { --background: #f8fafc; }
+
+/* =========================================
+   1. NAVBAR & BANNER
+   ========================================= */
+ion-toolbar {
+  --background: transparent !important;
+  --border-style: none !important;
+  padding-top: 10px !important;
+  padding-bottom: 5px !important;
+  display: flex !important;
+  width: 100% !important;
+  justify-content: center !important;
 }
 
-.timeline {
-  width: 100%;
-  max-width: 900px;
+.navbar-pill-container {
+  background: linear-gradient(135deg, #00C9B7 0%, #009e91 100%);
+  display: inline-flex;
+  padding: 5px;
+  border-radius: 50px;
+  gap: 5px;
+  box-shadow: 0 8px 20px rgba(0, 201, 183, 0.4);
+  max-width: 95%;
+  flex-wrap: wrap; 
+  justify-content: center;
+}
+
+.pill-item {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 14px; 
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+.pill-item:hover { background: rgba(255, 255, 255, 0.2); color: white !important; }
+.pill-active { background: #ffffff !important; color: #008f82 !important; font-weight: 800 !important; transform: scale(1.05); }
+
+.header-banner {
+  background: linear-gradient(135deg, #00C9B7 0%, #009e91 100%);
+  padding: 20px 20px 60px 20px;
+  text-align: center;
+  color: white;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  margin-bottom: 20px;
+}
+.header-banner h1 { font-weight: 800; margin: 0 0 5px 0; font-size: 26px; }
+.header-banner p { margin: 0; font-size: 14px; opacity: 0.95; }
+
+.main-content-wrapper {
+  padding: 0 20px 40px 20px;
+  margin-top: -45px;
+  position: relative;
+  z-index: 10;
+}
+
+/* =========================================
+   2. LÍNEA DE TIEMPO (ESTRUCTURA)
+   ========================================= */
+.timeline-container {
+  position: relative;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 40px 20px;
-  position: relative;
+  padding-left: 10px;
 }
 
-.evento {
-  position: relative;
-  display: flex;
-  margin-bottom: 60px;
-}
-
-.linea {
+.timeline-line {
   position: absolute;
-  left: 20px;
-  top: 0;
+  left: 19px;
+  top: 20px;
   bottom: 0;
   width: 4px;
-  background: #15b6ce;
+  background: #e2e8f0;
+  border-radius: 4px;
+  z-index: 1;
 }
 
-.punto {
-  width: 16px;
-  height: 16px;
-  background: #15b6ce;
-  border-radius: 50%;
-  margin-left: 12px;
-  margin-top: 20px;
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: flex-start;
   z-index: 2;
 }
 
-.tarjeta {
-  background: #ffffff;
-  margin-left: 40px;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  width: 100%;
+.timeline-dot {
+  width: 22px;
+  height: 22px;
+  background: #cbd5e1;
+  border: 4px solid #f1f5f9;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 20px;
+  margin-right: 20px;
+  box-shadow: 0 0 0 4px white; 
+  transition: all 0.3s ease;
+}
+.timeline-dot.dot-active {
+  background: #00C9B7;
+  border-color: #ccfbf1;
+  transform: scale(1.2);
 }
 
-.imagen {
-  width: 100%;
-  max-width: 600px;
-  height: 200px;
-  background: #e0e0e0;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-
-h2 {
-  margin: 0;
-  color: #15b6ce;
-}
-
-.fecha {
-  font-size: 14px;
-  color: #555;
-}
-
-.resumen {
-  margin: 10px 0;
-}
-
-.detalle {
-  margin-top: 10px;
-  color: #333;
-}
-
-button {
-  margin-top: 10px;
-  background: none;
-  border: none;
-  color: #15b6ce;
-  font-weight: bold;
+.timeline-card {
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  flex-grow: 1;
+  overflow: hidden;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
+.timeline-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+.timeline-card.card-active { border-color: #00C9B7; box-shadow: 0 15px 30px rgba(0, 201, 183, 0.15); }
 
-.navbar {
-  --background: #ffffff;
-  --color: #1f2937;
-  border-bottom: 1px solid #e5e7eb;
+/* =========================================
+   3. SOLUCIÓN DEFINITIVA DE IMÁGENES
+   ========================================= */
+
+/* Atacamos TANTO a .card-img COMO a .imagen por si acaso */
+.card-img, .imagen {
+  width: 100%;
+  height: 180px; /* Altura forzada del contenedor */
+  overflow: hidden;
+  background: #f1f5f9;
+  display: block; /* Asegura que se comporte como bloque */
 }
 
-ion-title {
-  font-family: 'Comic Sans MS', 'Comic Neue', cursive;
-  font-weight: bold;
+/* Selector super específico con !important */
+.card-img img, 
+.imagen img,
+.timeline-card img {
+  width: 100% !important;
+  height: 100% !important;
+  
+  /* ESTO ES LO QUE ARREGLA LA DEFORMACIÓN */
+  object-fit: cover !important;
+  object-position: center !important;
+  
+  display: block !important;
 }
 
-ion-button {
-  --color: #374151;
+/* =========================================
+   4. RESTO DE TEXTOS
+   ========================================= */
+.card-content { padding: 20px; }
+
+.date-badge {
+  background: #ccfbf1;
+  color: #0f766e;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
-ion-button:hover {
-  --color: #15b6ce;
+h3 { margin: 0 0 8px 0; font-size: 18px; font-weight: 800; color: #1e293b; }
+.summary-text { margin: 0; font-size: 14px; color: #64748b; line-height: 1.5; }
+
+.detail-text {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed #e2e8f0;
+  animation: fadeIn 0.3s ease-in;
+}
+.detail-text p { margin: 0; font-size: 14px; color: #334155; line-height: 1.6; }
+
+.toggle-indicator { margin-top: 15px; font-size: 12px; font-weight: 700; color: #00C9B7; display: flex; align-items: center; gap: 5px; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+/* =========================================
+   3. SOLUCIÓN DEFINITIVA DE IMÁGENES (CON EXPANSIÓN)
+   ========================================= */
+
+/* --- ESTADO NORMAL (Cerrado) --- */
+/* El contenedor define el tamaño fijo del marco */
+.card-img, .imagen {
+  width: 100%;
+  height: 180px; /* Altura fija cuando está cerrado */
+  overflow: hidden;
+  background: #f1f5f9;
+  display: block;
+  
+  /* AGREGAMOS TRANSICIÓN SUAVE PARA LA ALTURA */
+  transition: height 0.4s ease-in-out;
 }
 
-ion-icon {
-  font-size: 22px;
+/* La imagen se recorta para llenar el marco */
+.card-img img, 
+.imagen img {
+  width: 100%;
+  height: 100%;
+  
+  /* 'cover' recorta la imagen para que llene el espacio de 180px */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  
+  /* Transición para las propiedades de la imagen */
+  transition: all 0.4s ease-in-out;
 }
 
+
+/* --- ESTADO ACTIVO (Expandido) --- */
+/* Cuando la tarjeta tiene la clase .card-active... */
+
+/* 1. El contenedor de la imagen crece automáticamente */
+.timeline-card.card-active .card-img,
+.timeline-card.card-active .imagen {
+  height: auto; /* Deja que la altura se adapte al contenido */
+  min-height: 180px; /* Para que no sea más pequeña que antes */
+}
+
+/* 2. La imagen cambia su comportamiento para verse completa */
+.timeline-card.card-active .card-img img,
+.timeline-card.card-active .imagen img {
+  height: auto; /* La altura se ajusta proporcionalmente al ancho */
+  
+  /* 'contain' asegura que se vea TODA la imagen sin recortes */
+  object-fit: contain; 
+  
+  /* Opcional: Límite de altura para que imágenes muy verticales no sean gigantes */
+  max-height: 500px; 
+}
