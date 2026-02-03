@@ -18,6 +18,12 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
   @ViewChild('threeContainer', { static: false }) threeContainer!: ElementRef;
 
   pasoActual = 0;
+  evaluacionAbierta = false;
+
+  readonly googleFormUrl =
+    'https://docs.google.com/forms/d/e/1FAIpQLSfjGF2LfAZTBe90IpXU-Uh3XZRURw8ms5447cmtbqrKksBfWA/viewform?usp=dialog';
+  readonly googleFormEmbedUrl =
+    'https://docs.google.com/forms/d/e/1FAIpQLSfjGF2LfAZTBe90IpXU-Uh3XZRURw8ms5447cmtbqrKksBfWA/viewform?embedded=true';
 
   // --- GUÍA PRO (Mismo contenido, ahora en estilo claro) ---
   pasos = [
@@ -158,15 +164,26 @@ export class PrototipoRealistaPage implements AfterViewInit, OnDestroy {
     }, 50);
   }
 
-cambiarPaso(delta: number) {
+  toggleEvaluacion() {
+    this.evaluacionAbierta = !this.evaluacionAbierta;
+  }
+
+  irAComponentes() {
+    this.router.navigate(['/componentes']);
+  }
+
+  cambiarPaso(delta: number) {
     const nuevo = this.pasoActual + delta;
     
     if (nuevo >= 0 && nuevo < this.pasos.length) {
       this.pasoActual = nuevo;
+      if (this.pasoActual !== this.pasos.length - 1) {
+        this.evaluacionAbierta = false;
+      }
     }
-    // AL FINALIZAR EL BUILD, VOLVEMOS A COMPONENTES
+    // AL FINALIZAR, MOSTRAMOS EL TEST
     else if (delta > 0 && nuevo >= this.pasos.length) {
-      this.router.navigate(['/componentes']);
+      this.evaluacionAbierta = true;
     }
   }
 

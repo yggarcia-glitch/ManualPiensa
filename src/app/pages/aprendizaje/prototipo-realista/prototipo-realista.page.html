@@ -1,5 +1,17 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button
+        fill="clear"
+        class="nav-back-btn"
+        (click)="irAComponentes()"
+        title="Volver a Componentes"
+        aria-label="Volver a Componentes">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+        Volver atras
+      </ion-button>
+    </ion-buttons>
+
     <ion-title>Master Build</ion-title>
 
     <ion-buttons slot="end">
@@ -74,12 +86,78 @@
           </ion-button>
 
           <ion-button
+            *ngIf="pasoActual < pasos.length - 1"
             expand="block"
             class="flex-grow action-btn"
             (click)="cambiarPaso(1)">
-            <span *ngIf="pasoActual < pasos.length - 1">Siguiente Paso</span>
-            <span *ngIf="pasoActual === pasos.length - 1">Finalizar Build</span>
+            <span>Siguiente Paso</span>
+            <ion-icon slot="end" name="arrow-forward"></ion-icon>
           </ion-button>
+
+          <ion-button
+            *ngIf="pasoActual === pasos.length - 1"
+            expand="block"
+            class="flex-grow finish-toggle"
+            color="success"
+            (click)="toggleEvaluacion()"
+            [attr.aria-expanded]="evaluacionAbierta"
+            aria-controls="evaluacionPanel">
+            <span>{{ evaluacionAbierta ? 'Ocultar test' : 'Resolver test' }}</span>
+            <ion-icon
+              slot="end"
+              [name]="evaluacionAbierta ? 'chevron-up' : 'chevron-down'">
+            </ion-icon>
+          </ion-button>
+        </div>
+
+        <div
+          id="evaluacionPanel"
+          class="evaluacion-panel"
+          *ngIf="pasoActual === pasos.length - 1 && evaluacionAbierta">
+
+          <div class="evaluacion-head">
+            <ion-icon class="evaluacion-icon" name="clipboard-outline"></ion-icon>
+
+            <div class="evaluacion-text">
+              <h3 class="evaluacion-title">Test de Master Build</h3>
+              <p class="evaluacion-subtitle">
+                Resuelve el formulario para comprobar lo aprendido. Si no carga aquí, ábrelo en una nueva pestaña.
+              </p>
+            </div>
+          </div>
+
+          <div class="evaluacion-actions">
+            <ion-button
+              class="action-button"
+              color="success"
+              expand="block"
+              [href]="googleFormUrl"
+              target="_blank"
+              rel="noopener noreferrer">
+              Abrir en Google Forms
+              <ion-icon slot="end" name="open-outline"></ion-icon>
+            </ion-button>
+
+            <ion-button
+              class="action-button"
+              fill="outline"
+              color="dark"
+              expand="block"
+              (click)="irAComponentes()">
+              Ir a Componentes
+              <ion-icon slot="end" name="list-outline"></ion-icon>
+            </ion-button>
+          </div>
+
+          <div class="form-embed" role="region" aria-label="Formulario de evaluación">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSfjGF2LfAZTBe90IpXU-Uh3XZRURw8ms5447cmtbqrKksBfWA/viewform?embedded=true"
+              title="Test de Master Build"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
         </div>
 
       </div>

@@ -18,6 +18,12 @@ export class PrototipoIntermedioPage implements AfterViewInit, OnDestroy {
   @ViewChild('threeContainer', { static: false }) threeContainer!: ElementRef;
 
   pasoActual = 0;
+  evaluacionAbierta = false;
+
+  readonly googleFormUrl =
+    'https://docs.google.com/forms/d/e/1FAIpQLSfZUehitLbFa_V2i-MfSquqOxTOU-GThvnVnVCVJFhqBAXUaA/viewform?usp=dialog';
+  readonly googleFormEmbedUrl =
+    'https://docs.google.com/forms/d/e/1FAIpQLSfZUehitLbFa_V2i-MfSquqOxTOU-GThvnVnVCVJFhqBAXUaA/viewform?embedded=true';
 
   // --- GUÍA DETALLADA (NIVEL INTERMEDIO) ---
   pasos = [
@@ -142,7 +148,7 @@ export class PrototipoIntermedioPage implements AfterViewInit, OnDestroy {
   private animationId!: number;
   private modelo: any;
 
-constructor(private router: Router) { }
+  constructor(private router: Router) { }
   
 
   ngAfterViewInit() {
@@ -152,15 +158,26 @@ constructor(private router: Router) { }
     }, 50);
   }
 
-cambiarPaso(delta: number) {
+  toggleEvaluacion() {
+    this.evaluacionAbierta = !this.evaluacionAbierta;
+  }
+
+  irAComponentes() {
+    this.router.navigate(['/componentes']);
+  }
+
+  cambiarPaso(delta: number) {
     const nuevo = this.pasoActual + delta;
     
     if (nuevo >= 0 && nuevo < this.pasos.length) {
       this.pasoActual = nuevo;
+      if (this.pasoActual !== this.pasos.length - 1) {
+        this.evaluacionAbierta = false;
+      }
     }
-    // LÓGICA PARA SALIR AL TERMINAR
+    // AL FINALIZAR, MOSTRAMOS EL TEST
     else if (delta > 0 && nuevo >= this.pasos.length) {
-      this.router.navigate(['/componentes']);
+      this.evaluacionAbierta = true;
     }
   }
 

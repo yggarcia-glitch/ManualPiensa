@@ -24,6 +24,12 @@ export class PrototipoBasicoPage implements AfterViewInit, OnDestroy {
   // EN prototipo-basico.page.ts
 
   pasoActual = 0;
+  evaluacionAbierta = false;
+
+  readonly googleFormUrl =
+    'https://docs.google.com/forms/d/e/1FAIpQLSdG9JaOszbDZRve2QBkKG-Qjo7vSIs0nqHjyt9egWzgqudROA/viewform?usp=dialog';
+  readonly googleFormEmbedUrl =
+    'https://docs.google.com/forms/d/e/1FAIpQLSdG9JaOszbDZRve2QBkKG-Qjo7vSIs0nqHjyt9egWzgqudROA/viewform?embedded=true';
 
   pasos = [
     {
@@ -98,7 +104,7 @@ export class PrototipoBasicoPage implements AfterViewInit, OnDestroy {
   private animationId!: number;
   private gabinete: any;
 
-constructor(private router: Router) { }
+  constructor(private router: Router) { }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -107,7 +113,15 @@ constructor(private router: Router) { }
     }, 50);
   }
 
-cambiarPaso(delta: number) {
+  toggleEvaluacion() {
+    this.evaluacionAbierta = !this.evaluacionAbierta;
+  }
+
+  irAComponentes() {
+    this.router.navigate(['/componentes']);
+  }
+
+  cambiarPaso(delta: number) {
     // Calculamos el nuevo índice propuesto
     const nuevoIndice = this.pasoActual + delta;
 
@@ -116,13 +130,15 @@ cambiarPaso(delta: number) {
     // CASO 1: Avanzar o Retroceder dentro de los límites (Del 0 al 8)
     if (nuevoIndice >= 0 && nuevoIndice < this.pasos.length) {
       this.pasoActual = nuevoIndice;
+      if (this.pasoActual !== this.pasos.length - 1) {
+        this.evaluacionAbierta = false;
+      }
       console.log('-> Cambio exitoso. Nuevo paso:', this.pasoActual);
     } 
     // CASO 2: El usuario da clic en "Finalizar" (está en el último y quiere avanzar más)
     else if (delta > 0 && nuevoIndice >= this.pasos.length) {
-      console.log('-> Finalizando ensamble. Redirigiendo...');
-      this.router.navigate(['/componentes']); 
-      // O usa ['/home'] si prefieres ir al inicio
+      console.log('-> Mostrando evaluación.');
+      this.evaluacionAbierta = true;
     }
     // CASO 3: Error de límites (ej: intentar volver atrás desde el 0)
     else {
