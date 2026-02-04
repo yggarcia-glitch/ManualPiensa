@@ -1,0 +1,113 @@
+/* FONDO CLARO */
+ion-content.inicio-page {
+  --background: #ffffff;
+}
+
+.main-layout {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 20px;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f4f4 100%);
+}
+
+/* HEADER */
+.header-section {
+  text-align: center;
+  flex-shrink: 0; /* No encoger */
+  z-index: 10;
+}
+
+.logo-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #333;
+  margin: 0;
+  .highlight { color: #00C9B7; }
+}
+
+.slogan {
+  color: #999;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+/* --- SPLIT SCREEN (LA MAGIA) --- */
+.split-3d-container {
+  width: 100%;
+  flex-grow: 1; /* Ocupa todo el espacio disponible al centro */
+  display: flex;
+  flex-direction: row; /* Lado a lado */
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 250px;
+  
+  /* RESPONSIVE: En móviles muy estrechos, poner uno encima de otro */
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.model-pane {
+  flex: 1; /* Ambos ocupan el mismo espacio (50% / 50%) */
+  width: 100%; 
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: rgba(0,0,0,0.02); Opcional: para ver las cajas mientras ajustas */
+  border-radius: 20px;
+}
+
+/* MENSAJE Y BOTONES */
+.bottom-section {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.message-card {
+  text-align: center;
+  margin-bottom: 25px;
+  p { color: #555; font-size: 1.1rem; line-height: 1.4; }
+  .tech-text { color: #00C9B7; font-weight: 700; }
+}
+
+.buttons-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.btn-start {
+  width: 100%;
+  max-width: 280px;
+  --background: #00C9B7;
+  --background-hover: #00b3a3;
+  --color: #ffffff;
+  --border-radius: 50px;
+  height: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 201, 183, 0.25);
+}
+
+.btn-login {
+  width: 100%;
+  max-width: 280px;
+  --color: #666;
+  font-size: 0.9rem;
+  text-transform: none;
+  strong { color: #00C9B7; margin-left: 5px; }
+}

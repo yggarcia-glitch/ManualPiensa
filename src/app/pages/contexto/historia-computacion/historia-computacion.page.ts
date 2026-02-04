@@ -1,7 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent } from '@ionic/angular/standalone';
+import { RouterModule, Router } from '@angular/router'; // Agregamos Router
+import { 
+  IonHeader, 
+  IonToolbar, 
+  IonTitle, 
+  IonButtons, 
+  IonButton, 
+  IonContent,
+  IonIcon // Importante para el icono de salir
+} from '@ionic/angular/standalone';
+
+// --- IMPORTS PARA EL LOGOUT ---
+import { AuthService } from '../../../services/auth.service';
+import { addIcons } from 'ionicons';
+import { logOutOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-historia-computacion',
@@ -12,8 +25,11 @@ import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent } fr
     IonHeader,
     IonToolbar,
     IonContent,
+    IonButtons,
+    IonButton,
+    IonIcon, // Necesario en los imports
     CommonModule,
-    RouterModule // 👈 NECESARIO para routerLink en la navbar
+    RouterModule
   ],
 })
 export class HistoriaComputacionPage {
@@ -85,8 +101,26 @@ export class HistoriaComputacionPage {
     }
   ];
 
+  // --- CONSTRUCTOR CON AUTH ---
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+    // Registramos el icono
+    addIcons({ logOutOutline });
+  }
+
   toggleEvento(evento: any) {
     evento.abierto = !evento.abierto;
   }
-}
 
+  // --- FUNCIÓN LOGOUT ---
+  async logout() {
+    try {
+      await this.authService.logout();
+      this.router.navigate(['/inicio']);
+    } catch (error) {
+      console.error('Error al salir:', error);
+    }
+  }
+}

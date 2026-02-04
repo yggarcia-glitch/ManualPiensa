@@ -1,6 +1,5 @@
 /* --- CONFIGURACIÓN GENERAL --- */
 :host {
-  --background: #f8fafc;
   display: block;
 }
 ion-content { --background: #f8fafc; }
@@ -13,9 +12,6 @@ ion-toolbar {
   --border-style: none !important;
   padding-top: 10px !important;
   padding-bottom: 5px !important;
-  display: flex !important;
-  width: 100% !important;
-  justify-content: center !important;
 }
 
 .navbar-pill-container {
@@ -33,205 +29,187 @@ ion-toolbar {
 .pill-item {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.9) !important;
-  font-size: 14px; 
+  font-size: 14px;
   font-weight: 600;
   padding: 10px 20px;
   border-radius: 40px;
   transition: all 0.3s ease;
   white-space: nowrap;
-  text-transform: lowercase;
   cursor: pointer;
 }
-.pill-item:hover { background: rgba(255, 255, 255, 0.2); color: white !important; }
 .pill-active { background: #ffffff !important; color: #008f82 !important; font-weight: 800 !important; transform: scale(1.05); }
 
 .header-banner {
   background: linear-gradient(135deg, #00C9B7 0%, #009e91 100%);
-  padding: 20px 20px 60px 20px;
+  padding: 20px 20px 30px 20px;
   text-align: center;
   color: white;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
-  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0, 201, 183, 0.2);
 }
-.header-banner h1 { font-weight: 800; margin: 0 0 5px 0; font-size: 26px; }
-.header-banner p { margin: 0; font-size: 14px; opacity: 0.95; }
-
-.main-content-wrapper {
-  padding: 0 20px 40px 20px;
-  margin-top: -45px;
-  position: relative;
-  z-index: 10;
-}
+.header-banner h1 { font-weight: 800; margin: 0 0 5px 0; font-size: 24px; }
+.header-banner p { margin: 0; font-size: 12px; opacity: 0.95; letter-spacing: 1px; font-weight: 700; text-transform: uppercase; }
 
 /* =========================================
-   2. LÍNEA DE TIEMPO (ESTRUCTURA)
+   2. SCROLL HORIZONTAL
    ========================================= */
-.timeline-container {
+.horizontal-scroll-wrapper {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px 20px 80px 20px;
+  gap: 25px;
   position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  padding-left: 10px;
+  margin-top: 10px;
+  
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar { display: none; }
 }
 
 .timeline-line {
   position: absolute;
-  left: 19px;
-  top: 20px;
-  bottom: 0;
-  width: 4px;
+  top: 65px;
+  left: 0;
+  width: max(200vw, 3000px);
+  height: 4px;
   background: #e2e8f0;
-  border-radius: 4px;
-  z-index: 1;
+  z-index: 0;
 }
 
 .timeline-item {
-  position: relative;
-  margin-bottom: 30px;
+  flex: 0 0 300px;
   display: flex;
-  align-items: flex-start;
-  z-index: 2;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  scroll-snap-align: center;
+  z-index: 1;
 }
 
-.timeline-dot {
-  width: 22px;
-  height: 22px;
-  background: #cbd5e1;
-  border: 4px solid #f1f5f9;
+/* 1. AÑO (BURBUJA) */
+.year-bubble {
+  background: #ffffff;
+  border: 2px solid #00C9B7;
+  color: #008f82;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0, 201, 183, 0.2);
+  margin-bottom: 25px;
+  z-index: 2;
+  transition: all 0.3s ease; /* Transición suave del color */
+}
+
+/* --- ESTADO ACTIVO DEL AÑO (NUEVO) --- */
+.year-bubble.year-active {
+  background: #00C9B7; /* Fondo turquesa */
+  color: #ffffff;       /* Texto blanco */
+  transform: scale(1.1); /* Crece un poquito */
+  box-shadow: 0 8px 15px rgba(0, 201, 183, 0.4);
+}
+
+/* 2. CONECTOR */
+.connector-dot {
+  width: 18px;
+  height: 18px;
+  background: white;
+  border: 4px solid #cbd5e1;
   border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 20px;
-  margin-right: 20px;
-  box-shadow: 0 0 0 4px white; 
+  position: absolute;
+  top: 58px;
+  z-index: 2;
   transition: all 0.3s ease;
 }
-.timeline-dot.dot-active {
+.connector-dot.dot-active {
   background: #00C9B7;
   border-color: #ccfbf1;
-  transform: scale(1.2);
+  transform: scale(1.3);
+  box-shadow: 0 0 0 4px rgba(0, 201, 183, 0.3);
 }
 
+/* 3. TARJETA */
 .timeline-card {
+  margin-top: 25px;
   background: white;
   border-radius: 20px;
+  width: 100%;
   border: 1px solid #f1f5f9;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  flex-grow: 1;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
   overflow: hidden;
   transition: all 0.3s ease;
   cursor: pointer;
 }
-.timeline-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-.timeline-card.card-active { border-color: #00C9B7; box-shadow: 0 15px 30px rgba(0, 201, 183, 0.15); }
+.timeline-card.card-active { 
+  border-color: #00C9B7; 
+  box-shadow: 0 15px 40px rgba(0, 201, 183, 0.15); 
+  transform: translateY(-5px);
+}
 
 /* =========================================
-   3. SOLUCIÓN DEFINITIVA DE IMÁGENES
+   3. IMÁGENES
    ========================================= */
-
-/* Atacamos TANTO a .card-img COMO a .imagen por si acaso */
-.card-img, .imagen {
+.card-img-container {
   width: 100%;
-  height: 180px; /* Altura forzada del contenedor */
+  height: 160px;
   overflow: hidden;
   background: #f1f5f9;
-  display: block; /* Asegura que se comporte como bloque */
+  transition: height 0.4s ease-in-out;
 }
 
-/* Selector super específico con !important */
-.card-img img, 
-.imagen img,
-.timeline-card img {
-  width: 100% !important;
-  height: 100% !important;
-  
-  /* ESTO ES LO QUE ARREGLA LA DEFORMACIÓN */
-  object-fit: cover !important;
-  object-position: center !important;
-  
-  display: block !important;
+.card-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: all 0.4s ease-in-out;
+}
+
+/* --- ESTADO EXPANDIDO --- */
+.timeline-card.card-active .card-img-container {
+  height: auto;
+  min-height: 160px;
+}
+
+.timeline-card.card-active .card-img-container img {
+  height: auto;
+  object-fit: contain;
+  max-height: 400px;
 }
 
 /* =========================================
-   4. RESTO DE TEXTOS
+   4. TEXTOS
    ========================================= */
 .card-content { padding: 20px; }
 
-.date-badge {
-  background: #ccfbf1;
-  color: #0f766e;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 800;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-h3 { margin: 0 0 8px 0; font-size: 18px; font-weight: 800; color: #1e293b; }
-.summary-text { margin: 0; font-size: 14px; color: #64748b; line-height: 1.5; }
+h3 { margin: 0 0 10px 0; font-size: 16px; color: #1e293b; font-weight: 800; }
+.summary-text { font-size: 13px; color: #64748b; margin: 0; line-height: 1.5; }
 
 .detail-text {
   margin-top: 15px;
   padding-top: 15px;
   border-top: 1px dashed #e2e8f0;
-  animation: fadeIn 0.3s ease-in;
+  animation: fadeIn 0.4s ease;
+  
+  p { font-size: 13px; color: #334155; line-height: 1.6; text-align: justify; }
 }
-.detail-text p { margin: 0; font-size: 14px; color: #334155; line-height: 1.6; }
 
-.toggle-indicator { margin-top: 15px; font-size: 12px; font-weight: 700; color: #00C9B7; display: flex; align-items: center; gap: 5px; }
+.toggle-indicator {
+  margin-top: 15px;
+  color: #00C9B7;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-transform: uppercase;
+}
+
+.spacer-end { flex: 0 0 20px; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-/* =========================================
-   3. SOLUCIÓN DEFINITIVA DE IMÁGENES (CON EXPANSIÓN)
-   ========================================= */
-
-/* --- ESTADO NORMAL (Cerrado) --- */
-/* El contenedor define el tamaño fijo del marco */
-.card-img, .imagen {
-  width: 100%;
-  height: 180px; /* Altura fija cuando está cerrado */
-  overflow: hidden;
-  background: #f1f5f9;
-  display: block;
-  
-  /* AGREGAMOS TRANSICIÓN SUAVE PARA LA ALTURA */
-  transition: height 0.4s ease-in-out;
-}
-
-/* La imagen se recorta para llenar el marco */
-.card-img img, 
-.imagen img {
-  width: 100%;
-  height: 100%;
-  
-  /* 'cover' recorta la imagen para que llene el espacio de 180px */
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  
-  /* Transición para las propiedades de la imagen */
-  transition: all 0.4s ease-in-out;
-}
-
-
-/* --- ESTADO ACTIVO (Expandido) --- */
-/* Cuando la tarjeta tiene la clase .card-active... */
-
-/* 1. El contenedor de la imagen crece automáticamente */
-.timeline-card.card-active .card-img,
-.timeline-card.card-active .imagen {
-  height: auto; /* Deja que la altura se adapte al contenido */
-  min-height: 180px; /* Para que no sea más pequeña que antes */
-}
-
-/* 2. La imagen cambia su comportamiento para verse completa */
-.timeline-card.card-active .card-img img,
-.timeline-card.card-active .imagen img {
-  height: auto; /* La altura se ajusta proporcionalmente al ancho */
-  
-  /* 'contain' asegura que se vea TODA la imagen sin recortes */
-  object-fit: contain; 
-  
-  /* Opcional: Límite de altura para que imágenes muy verticales no sean gigantes */
-  max-height: 500px; 
-}

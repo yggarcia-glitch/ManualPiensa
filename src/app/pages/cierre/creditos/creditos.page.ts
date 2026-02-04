@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; // Agregamos Router
+
+// --- IMPORTS PARA EL LOGOUT ---
+import { AuthService } from '../../../services/auth.service';
+import { addIcons } from 'ionicons';
+import { logOutOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-creditos',
@@ -47,53 +52,55 @@ export class CreditosPage implements OnInit {
     }
   ];
 
-  // 2. FUENTES DE RECURSOS (Con tus nuevos iconos PNG)
+  // 2. FUENTES DE RECURSOS
   fuentesRecursos = [
     { 
       nombre: 'MakerWorld', 
       uso: 'Repositorio de Modelos 3D', 
       url: 'https://makerworld.com/',
-      imagen: 'assets/icon/markerworld.png' // Icono Personalizado
+      imagen: 'assets/icon/markerworld.png' 
     },
     { 
       nombre: 'Sketchfab', 
       uso: 'Referencias visuales y modelos', 
       url: 'https://sketchfab.com/',
-      imagen: 'assets/icon/sketchfab.png' // Icono Personalizado
+      imagen: 'assets/icon/sketchfab.png' 
     },
     { 
       nombre: 'Flaticon', 
       uso: 'Iconos vectoriales y Emojis', 
       url: 'https://www.flaticon.es',
-      imagen: 'assets/icon/flaticon.png' // Icono Personalizado
+      imagen: 'assets/icon/flaticon.png' 
     }
   ];
 
-  // 3. TECNOLOGÍAS USADAS (Usamos iconos de Ionic/Ionicon)
+  // 3. TECNOLOGÍAS USADAS
   tecnologias = [
     { nombre: 'Ionic Framework', url: 'https://ionicframework.com/', iconName: 'logo-ionic', color: '#3880ff' },
     { nombre: 'Angular', url: 'https://angular.io/', iconName: 'logo-angular', color: '#dd0031' },
-    { nombre: 'Three.js', url: 'https://threejs.org/', iconName: 'cube-outline', color: '#000000' }, // Usamos cubo para 3D
+    { nombre: 'Three.js', url: 'https://threejs.org/', iconName: 'cube-outline', color: '#000000' },
     { nombre: 'Wikipedia', url: 'https://es.wikipedia.org/', iconName: 'globe-outline', color: '#5f6368' }
   ];
 
-  // 4. COLABORACIÓN IA (Con tus iconos PNG)
-  asistenciaIA = [
-    { 
-      nombre: 'Gemini', 
-      rol: 'Estructura lógica, código y optimización.', 
-      imagen: 'assets/icon/gemini.png',
-      url: 'https://gemini.google.com/'
-    },
-    { 
-      nombre: 'ChatGPT', 
-      rol: 'Documentación técnica y redacción.', 
-      imagen: 'assets/icon/chatgpt.png',
-      url: 'https://chat.openai.com/'
-    }
-  ];
 
-  constructor() { }
+  // --- CONSTRUCTOR CON AUTH ---
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { 
+    // Registramos el icono de salida
+    addIcons({ logOutOutline });
+  }
 
   ngOnInit() { }
+
+  // --- FUNCIÓN LOGOUT ---
+  async logout() {
+    try {
+      await this.authService.logout();
+      this.router.navigate(['/inicio']);
+    } catch (error) {
+      console.error('Error al salir:', error);
+    }
+  }
 }

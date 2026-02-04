@@ -1,0 +1,42 @@
+<ion-content class="inicio-page">
+  
+  <div class="main-layout">
+
+    <div class="header-section">
+      <h1 class="logo-title">Manual<span class="highlight">Piensa</span></h1>
+      <p class="slogan">Tu portal al futuro digital</p>
+    </div>
+
+    <div class="split-3d-container">
+      
+      <div class="model-pane left-pane" #printerCanvas></div>
+
+      <div class="model-pane right-pane" #pcCanvas></div>
+
+    </div>
+
+    <div class="bottom-section">
+      
+      <div class="message-card">
+        <p>
+          Descubre el mundo de la <br>
+          <span class="tech-text">Impresión 3D</span> y la 
+          <span class="tech-text">Computación</span>.
+        </p>
+      </div>
+
+      <div class="buttons-section">
+        <ion-button class="btn-start" (click)="irARegistro()">
+          Comenzar a aprender
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+
+        <ion-button fill="clear" class="btn-login" (click)="irALogin()">
+          ¿Ya tienes cuenta? <strong>Ingresa aquí</strong>
+        </ion-button>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

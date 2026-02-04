@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; // Agregamos Router
+
+// --- IMPORTS PARA EL LOGOUT ---
+import { AuthService } from '../../../services/auth.service';
+import { addIcons } from 'ionicons';
+import { logOutOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-razon-social',
@@ -79,6 +84,24 @@ export class RazonSocialPage implements OnInit {
     }
   ];
 
-  constructor() { }
+  // --- CONSTRUCTOR CON AUTH ---
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { 
+    // Registramos el icono de salida
+    addIcons({ logOutOutline });
+  }
+
   ngOnInit() { }
+
+  // --- FUNCIÓN LOGOUT ---
+  async logout() {
+    try {
+      await this.authService.logout();
+      this.router.navigate(['/inicio']);
+    } catch (error) {
+      console.error('Error al salir:', error);
+    }
+  }
 }

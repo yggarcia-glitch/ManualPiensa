@@ -6,7 +6,7 @@ import {
   ElementRef
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; // Agregamos Router
 import {
   IonContent,
   IonHeader,
@@ -16,10 +16,19 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
-  IonIcon, IonButton, IonButtons } from '@ionic/angular/standalone';
+  IonIcon, 
+  IonButton, 
+  IonButtons 
+} from '@ionic/angular/standalone';
+
+// --- IMPORTS PARA EL LOGOUT ---
+import { AuthService } from '../../../services/auth.service';
+import { addIcons } from 'ionicons';
+import { logOutOutline } from 'ionicons/icons';
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
 @Component({
   selector: 'app-impresion3d',
   templateUrl: './impresion3d.page.html',
@@ -33,7 +42,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
-    CommonModule,
+    IonIcon,    // Necesario para el icono de salir
+    IonButton,  // Necesario para el botón de salir
+    IonButtons, // Necesario para posicionar el botón
     RouterModule
   ]
 })
@@ -45,7 +56,7 @@ export class Impresion3dPage implements AfterViewInit, OnDestroy {
   tituloPagina: string = 'Impresión 3D';
 
   evolucionImpresion3D = [
-   {
+    {
       anio: '1984',
       titulo: 'Origen',
       descripcion:
@@ -75,15 +86,21 @@ export class Impresion3dPage implements AfterViewInit, OnDestroy {
     }
   ];
 
-  // THREE
-   // MANTENEMOS TUS TYPES "ANY"
+  // THREE VARIABLES
   private scene: any;
   private camera: any;
   private renderer: any;
-  
-  // Cambiamos "cube" por "model" o "printer"
   private printer: any; 
   private animationId!: number;
+
+  // --- CONSTRUCTOR AGREGADO PARA AUTH ---
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+    // Registramos el icono de salida
+    addIcons({ logOutOutline });
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -92,6 +109,7 @@ export class Impresion3dPage implements AfterViewInit, OnDestroy {
     }, 50);
   }
 
+  // --- TU LÓGICA 3D EXACTA ---
   private initThree() {
     const container = this.threeContainer.nativeElement;
     if (!container) return;
@@ -110,22 +128,17 @@ export class Impresion3dPage implements AfterViewInit, OnDestroy {
     this.renderer.setClearColor(0x000000, 0); 
     container.appendChild(this.renderer.domElement);
 
-    // --- LUCES (Vital para modelos 3D reales) ---
-    // Luz ambiental (ilumina todo suavemente)
+    // --- LUCES ---
     const ambientLight = new THREE.AmbientLight(0xffffff, 1); 
     this.scene.add(ambientLight);
 
-    // Luz direccional (como el sol, da sombras y volumen)
     const dirLight = new THREE.DirectionalLight(0xffffff, 2);
     dirLight.position.set(5, 10, 7);
     this.scene.add(dirLight);
 
-
-// --- CARGAR EL MODELO GLB ---
+    // --- CARGAR EL MODELO GLB ---
     const loader = new GLTFLoader();
 
-    // TRUCO: Ponemos '(loader as any)' para que TypeScript deje de molestar
-    // con los tipos de los argumentos.
     (loader as any).load(
       'assets/impresora.glb',
       (gltf: any) => {
@@ -134,12 +147,11 @@ export class Impresion3dPage implements AfterViewInit, OnDestroy {
         
         // Ajustes opcionales de posición/escala
         this.printer.position.y = -0.1; 
-        // this.printer.scale.set(0.5, 0.5, 0.5); 
         this.printer.scale.set(0.05, 0.05, 0.05);
 
         this.scene.add(this.printer);
       },
-      undefined, // 2. PROGRESO (Lo dejamos undefined y 'as any' lo aceptará)
+      undefined, 
       (error: any) => {
         // 3. ERROR
         console.error('Error cargando el modelo:', error);
@@ -165,6 +177,16 @@ export class Impresion3dPage implements AfterViewInit, OnDestroy {
     this.camera.aspect = container.clientWidth / container.clientHeight;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(container.clientWidth, container.clientHeight);
+  }
+
+  // --- FUNCIÓN LOGOUT ---
+  async logout() {
+    try {
+      await this.authService.logout();
+      this.router.navigate(['/inicio']);
+    } catch (error) {
+      console.error('Error al salir:', error);
+    }
   }
 
   ngOnDestroy(): void {

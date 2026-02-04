@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { RouterLink } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+
+// IMPORTS PARA EL LOGOUT
+import { AuthService } from '../../../services/auth.service';
+import { addIcons } from 'ionicons';
+import { logOutOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-componentes',
@@ -16,13 +20,12 @@ export class ComponentesPage {
   modalAbierto = false;
   componenteSeleccionado: any = null;
 
-  // --- SECCIÓN DE NIVELES (Con tus nuevos Emojis) ---
+  // --- SECCIÓN DE NIVELES ---
   guiasArmado = [
     {
       nivel: 'Nivel 1',
       titulo: 'Básico',
       ruta: '/prototipo-basico',
-      // Emoji Bebé 👶
       icono: 'assets/icon/bebe.png', 
       color: 'teal',
       descripcion: 'Aprende lo esencial.'
@@ -31,7 +34,6 @@ export class ComponentesPage {
       nivel: 'Nivel 2',
       titulo: 'Intermedio',
       ruta: '/prototipo-intermedio',
-      // Emoji Nerd 🤓
       icono: 'assets/icon/nerd.png', 
       color: 'blue',
       descripcion: 'Ensamble detallado.'
@@ -40,7 +42,6 @@ export class ComponentesPage {
       nivel: 'Nivel 3',
       titulo: 'Master Pro',
       ruta: '/prototipo-realista',
-      // Emoji Gafas de Sol 😎 (Asegúrate de que el archivo se llame así, con guiones)
       icono: 'assets/icon/gafas-de-sol.png', 
       color: 'dark',
       descripcion: 'Refrigeración Líquida.'
@@ -123,7 +124,13 @@ export class ComponentesPage {
     }
   ];
 
-  constructor() { }
+  constructor(
+    private authService: AuthService, // Inyección del servicio de Auth
+    private router: Router            // Inyección del Router
+  ) { 
+    // Registramos el icono de salida
+    addIcons({ logOutOutline });
+  }
 
   abrirDetalle(componente: any) {
     this.componenteSeleccionado = componente;
@@ -133,5 +140,16 @@ export class ComponentesPage {
   cerrarModal() {
     this.modalAbierto = false;
     this.componenteSeleccionado = null;
+  }
+
+  // --- FUNCIÓN DE CERRAR SESIÓN ---
+  async logout() {
+    try {
+      await this.authService.logout();
+      // Redirigir al Landing Page (Inicio)
+      this.router.navigate(['/inicio']);
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
   }
 }

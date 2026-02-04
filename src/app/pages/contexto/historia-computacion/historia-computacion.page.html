@@ -15,54 +15,58 @@
       </div>
 
     </div>
+    
+    <ion-buttons slot="end" style="z-index: 10;">
+      <ion-button (click)="logout()" color="danger" fill="clear" title="Cerrar Sesión">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <div class="header-banner">
-    <h1>Historia de la Computación</h1>
-    <p>Toca los hitos para ver los detalles</p>
+    <h1>Evolución Tecnológica</h1>
+    <p>DESLIZA HACIA LA DERECHA PARA VIAJAR EN EL TIEMPO</p>
   </div>
 
-  <div class="main-content-wrapper">
+  <div class="horizontal-scroll-wrapper">
+    
+    <div class="timeline-line"></div>
 
-    <div class="timeline-container">
+    <div class="timeline-item" *ngFor="let item of eventos">
       
-      <div class="timeline-line"></div>
+      <div class="year-bubble" [class.year-active]="item.abierto">
+        {{ item.fecha }}
+      </div>
 
-      <div class="timeline-item" *ngFor="let item of eventos">
+      <div class="connector-dot" [class.dot-active]="item.abierto"></div>
+
+      <div class="timeline-card" (click)="toggleEvento(item)" [class.card-active]="item.abierto">
         
-        <div class="timeline-dot" [class.dot-active]="item.abierto"></div>
+        <div class="card-img-container" *ngIf="item.imagen">
+          <img [src]="item.imagen" [alt]="item.titulo" />
+        </div>
 
-        <div class="timeline-card" (click)="toggleEvento(item)" [class.card-active]="item.abierto">
+        <div class="card-content">
+          <h3>{{ item.titulo }}</h3>
           
-          <div class="card-img" *ngIf="item.imagen">
-            <img [src]="item.imagen" [alt]="item.titulo" />
+          <p class="summary-text">{{ item.resumen }}</p>
+
+          <div class="detail-text" *ngIf="item.abierto">
+            <p>{{ item.detalle }}</p>
           </div>
 
-          <div class="card-content">
-            <span class="date-badge">{{ item.fecha }}</span>
-            <h3>{{ item.titulo }}</h3>
-            
-            <p class="summary-text">{{ item.resumen }}</p>
-
-            <div class="detail-text" *ngIf="item.abierto">
-              <p>{{ item.detalle }}</p>
-            </div>
-
-            <div class="toggle-indicator">
-              <span>{{ item.abierto ? 'Leer menos' : 'Leer más' }}</span>
-              <span style="font-size: 10px; margin-left: 5px;">{{ item.abierto ? '▲' : '▼' }}</span>
-            </div>
-
+          <div class="toggle-indicator">
+            <span>{{ item.abierto ? 'Leer menos' : 'Leer más' }}</span>
           </div>
-          
         </div>
 
       </div>
-
     </div>
+
+    <div class="spacer-end"></div>
 
   </div>
 

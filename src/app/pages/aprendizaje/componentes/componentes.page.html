@@ -28,7 +28,11 @@
         </div>
 
     </div>
-
+      <ion-buttons slot="end" style="z-index: 10;">
+            <ion-button (click)="logout()" color="danger" fill="clear" title="Cerrar Sesión">
+              <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

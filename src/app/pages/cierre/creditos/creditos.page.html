@@ -14,6 +14,11 @@
       </div>
 
     </div>
+      <ion-buttons slot="end" style="z-index: 10;">
+      <ion-button (click)="logout()" color="danger" fill="clear" title="Cerrar Sesión">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -104,22 +109,7 @@
       </a>
     </div>
 
-    <div class="section-title mt-4">
-      <h3>Asistencia IA</h3>
-      <div class="divider purple"></div>
-    </div>
 
-    <div class="ai-container">
-      <a [href]="ia.url" target="_blank" class="ai-card" *ngFor="let ia of asistenciaIA">
-        <div class="ai-img-wrapper">
-          <img [src]="ia.imagen" />
-        </div>
-        <div class="ai-content">
-          <strong>{{ ia.nombre }}</strong>
-          <p>{{ ia.rol }}</p>
-        </div>
-      </a>
-    </div>
 
     <div class="footer-note">
       <p class="copyright">© 2026 ManualPiensa</p>
