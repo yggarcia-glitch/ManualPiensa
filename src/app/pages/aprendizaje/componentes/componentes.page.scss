@@ -5,19 +5,27 @@
 
 /* --- NAVBAR PÍLDORA (VERSIÓN FINAL) --- */
 
-/* Actualiza este bloque */
 ion-toolbar {
   --background: transparent !important;
   --border-style: none !important;
   --min-height: auto !important;
-
-  /* REDUCIMOS EL ESPACIO VERTICAL */
-  padding-top: 10px !important;    /* Antes 30px -> Mucho más pegado arriba */
-  padding-bottom: 5px !important;  /* Antes 15px */
-  
+  padding-top: 10px !important;
+  padding-bottom: 5px !important;
   display: flex !important;
   width: 100% !important;
   justify-content: center !important;
+}
+
+.navbar-pill-container {
+  background: linear-gradient(135deg, #00C9B7 0%, #009e91 100%);
+  display: inline-flex;
+  padding: 5px;
+  border-radius: 50px;
+  gap: 5px;
+  box-shadow: 0 8px 20px rgba(0, 201, 183, 0.4);
+  max-width: 95%;
+  flex-wrap: wrap; 
+  justify-content: center;
 }
 
 .navbar-pill-container {

@@ -4,18 +4,12 @@
       
       <div class="navbar-pill-container">
         <a routerLink="/componentes" routerLinkActive="pill-active" class="pill-item">componentes</a>
-        
-        <a routerLink="/historia-computacion" routerLinkActive="pill-active" [routerLinkActiveOptions]="{ exact: true }" class="pill-item">
-          historia
-        </a>
-
-        <a routerLink="/impresion3d" routerLinkActive="pill-active" class="pill-item">impresión 3d</a>
+        <a routerLink="/historia-computacion" routerLinkActive="pill-active" class="pill-item">historia</a>
+        <a routerLink="/impresion3d" routerLinkActive="pill-active" [routerLinkActiveOptions]="{ exact: true }" class="pill-item">impresión 3d</a>
         <a routerLink="/razon-social" routerLinkActive="pill-active" class="pill-item">proyecto</a>
         <a routerLink="/creditos" routerLinkActive="pill-active" class="pill-item">créditos</a>
       </div>
-
     </div>
-    
     <ion-buttons slot="end" style="z-index: 10;">
       <ion-button (click)="logout()" color="danger" fill="clear" title="Cerrar Sesión">
         <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
